@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "rodolfoizidoro.meucontato"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //Google Support
+    implementation "androidx.appcompat:appcompat:1.1.0-alpha01"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha3"
+    implementation "com.google.android.material:material:1.1.0-alpha03"
+
+    //Databinding setup
+    kapt "com.android.databinding:compiler:3.2.1"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+
+    // Anko Commons
+    implementation "org.jetbrains.anko:anko-commons:0.10.8"
+    implementation "org.jetbrains.anko:anko-design:0.10.8"
+
+    // AndroidX (based on koin-android)
+    // Koin AndroidX Scope feature
+    implementation "org.koin:koin-androidx-scope:$koinVersion"
+    // Koin AndroidX ViewModel feature
+    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
+
+    //Firebase
+    implementation "com.google.firebase:firebase-core:$firebaseCoreVersion"
+    implementation "com.google.firebase:firebase-auth:$firebaseAuthVersion"
+    implementation "com.google.firebase:firebase-firestore:$firebaseFirestoreVersion"
+    implementation "com.google.firebase:firebase-storage:$firebaseStorageVersion"
+
+    //PlayServices
+    implementation "com.google.android.gms:play-services-auth:$playServicesVersion"
+
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.1.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
+
+    // Assertions
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.ext:truth:1.1.0'
+    androidTestImplementation 'com.google.truth:truth:0.42'
+
+    // Assertions
+    testImplementation 'androidx.test.ext:junit:1.1.0'
+    testImplementation 'androidx.test.ext:truth:1.1.0'
+    testImplementation 'com.google.truth:truth:0.42'
+
+    // Espresso dependencies
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+}
