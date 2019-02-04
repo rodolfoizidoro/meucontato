@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "533694541095",
+    "firebase_url": "https://contactme-next.firebaseio.com",
+    "project_id": "contactme-next",
+    "storage_bucket": "contactme-next.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533694541095:android:ab435713b3a8129d",
+        "android_client_info": {
+          "package_name": "rodolfoizidoro.meucontato"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533694541095-4cf2b19nsh9fdsiid4pljg06tf60rmmb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rodolfoizidoro.meucontato",
+            "certificate_hash": "cb089750057432af0f916ddd5e68f071b60e8d95"
+          }
+        },
+        {
+          "client_id": "533694541095-s03c1n6rjdpek1dvrb9qfbvrpjpc9k65.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rodolfoizidoro.meucontato",
+            "certificate_hash": "958aedc43d600ba396f92e8a5eb97420b92fa2f3"
+          }
+        },
+        {
+          "client_id": "533694541095-p10cm3tv1gd3kbpnj97vdrqkjq950jah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGMh-lZpfpqP5yEG2VrWxybyIMasLng00"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533694541095-p10cm3tv1gd3kbpnj97vdrqkjq950jah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
