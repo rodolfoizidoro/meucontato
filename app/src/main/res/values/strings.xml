@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">MeuContato</string>
+    <string name="app_name">Meu Contato</string>
 
    <!--Login-->
     <string name="title_activity_login">Sign in</string>
-    <string name="login_google_button">Log In with Google</string>
+    <string name="login_google_button">Sign In with Google</string>
 </resources>
