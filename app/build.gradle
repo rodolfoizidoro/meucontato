@@ -7,9 +7,22 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'MeuContato'
+            keyPassword '151294'
+            storeFile file('/Users/rodolfoizidoro/Documents/KeyStoreMeuContatoNext/MeuContato')
+            storePassword '151294'
+        }
+        debug {
+            keyAlias 'MeuContato'
+            keyPassword '151294'
+            storeFile file('/Users/rodolfoizidoro/Documents/KeyStoreMeuContatoNext/MeuContatoDebug')
+            storePassword '151294'
+        }
+    }
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
-
     defaultConfig {
         applicationId "rodolfoizidoro.meucontato"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -22,6 +35,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.debug
         }
     }
     dataBinding {
@@ -30,27 +47,29 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //Google Support
-    implementation "androidx.appcompat:appcompat:1.1.0-alpha01"
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha3"
-    implementation "com.google.android.material:material:1.1.0-alpha03"
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    implementation 'com.google.android.material:material:1.1.0-alpha03'
 
     //Databinding setup
     kapt "com.android.databinding:compiler:3.2.1"
 
     // ViewModel and LiveData
-    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
     // Anko Commons
-    implementation "org.jetbrains.anko:anko-commons:0.10.8"
-    implementation "org.jetbrains.anko:anko-design:0.10.8"
+    implementation 'org.jetbrains.anko:anko-commons:0.10.8'
+    implementation 'org.jetbrains.anko:anko-design:0.10.8'
 
     // AndroidX (based on koin-android)
+
     // Koin AndroidX Scope feature
     implementation "org.koin:koin-androidx-scope:$koinVersion"
+
     // Koin AndroidX ViewModel feature
     implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
 

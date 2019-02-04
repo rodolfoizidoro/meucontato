@@ -2,7 +2,6 @@ package rodolfoizidoro.meucontato.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -10,6 +9,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.android.synthetic.main.activity_login.*
+import org.jetbrains.anko.design.snackbar
 import rodolfoizidoro.meucontato.R
 
 class LoginActivity : AppCompatActivity() {
@@ -20,18 +21,24 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        initGoogleSignIn()
+
+        btnLoginGoogle.setOnClickListener { signIn() }
     }
 
     private fun initGoogleSignIn() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
+            .requestProfile()
             .build()
+
         googleApiClient = GoogleApiClient.Builder(this)
             .enableAutoManage(this) {
                 showErrorSignIn()
             }
-            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+            .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
             .build()
     }
 
@@ -57,21 +64,29 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+        val email = account.email ?: ""
+        val name = account.displayName ?: ""
         fbAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-//                    val nav = Navigation.findNavController(requireActivity(), R.id.navHost)
-//                    nav.popBackStack()
+                    val isNewUser = task.result?.additionalUserInfo?.isNewUser ?: false
+                    if (isNewUser) {
+                        registerDataForNewUser()
+                    }
                 } else {
                     showErrorSignIn()
                 }
             }
     }
 
+    private fun registerDataForNewUser() {
+
+    }
+
     private fun showErrorSignIn() {
-        // toast
+        rootLogin.snackbar(R.string.login_error)
     }
 
     companion object {
