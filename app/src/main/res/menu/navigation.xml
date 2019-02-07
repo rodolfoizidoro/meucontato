@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navContactList"
+        android:icon="@drawable/ic_nav_menu_info"
+        android:title="@string/navigation_menu_contact_list" />
+
+    <item
+        android:id="@+id/navMeetups"
+        android:icon="@drawable/ic_nav_menu_meetup"
+        android:title="@string/navigation_menu_meetups" />
+    <item
+        android:id="@+id/navShare"
+        android:icon="@drawable/ic_nav_menu_share"
+        android:title="@string/navigation_menu_share" />
+
+    <item
+        android:id="@+id/navInfo"
+        android:icon="@drawable/ic_nav_menu_info"
+        android:title="@string/navigation_menu_info" />
+
+    <item
+        android:id="@+id/navProfiles"
+        android:icon="@drawable/ic_nav_menu_info"
+        android:title="@string/navigation_menu_profiles" />
+
+</menu>

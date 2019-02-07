@@ -8,16 +8,18 @@ apply plugin: 'kotlin-kapt'
 
 android {
     signingConfigs {
+
         config {
             keyAlias 'MeuContato'
             keyPassword '151294'
-            storeFile file('/Users/rodolfoizidoro/Documents/KeyStoreMeuContatoNext/MeuContato')
+            storeFile file('src/key/MeuContatoDebug')
             storePassword '151294'
         }
+
         debug {
             keyAlias 'MeuContato'
             keyPassword '151294'
-            storeFile file('/Users/rodolfoizidoro/Documents/KeyStoreMeuContatoNext/MeuContatoDebug')
+            storeFile file('src/key/MeuContatoDebug')
             storePassword '151294'
         }
     }

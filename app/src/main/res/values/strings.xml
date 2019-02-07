@@ -5,4 +5,11 @@
     <string name="login_activity_title">Sign in</string>
     <string name="login_google_button">Sign In with Google</string>
     <string name="login_error">Falha ao fazer login</string>
+
+    <!--Navigation-->
+    <string name="navigation_menu_contact_list">Contatos</string>
+    <string name="navigation_menu_meetups">Meetups</string>
+    <string name="navigation_menu_share">Compartilhar</string>
+    <string name="navigation_menu_info">Informações</string>
+    <string name="navigation_menu_profiles">Perfis</string>
 </resources>
