@@ -2,7 +2,7 @@ package rodolfoizidoro.meucontato.application
 
 import android.app.Application
 import org.koin.android.ext.android.startKoin
-import rodolfoizidoro.meucontato.di.AppModule.Companion.MeuContatoModules
+import rodolfoizidoro.meucontato.di.AppModule.MeuContatoModules
 
 class MeuContatoApplication : Application() {
 

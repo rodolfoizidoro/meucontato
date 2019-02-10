@@ -1,4 +1,4 @@
-package rodolfoizidoro.meucontato.view
+package rodolfoizidoro.meucontato.view.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -44,7 +44,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun signIn() {
         val signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient)
-        startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN)
+        startActivityForResult(signInIntent,
+            RC_GOOGLE_SIGN_IN
+        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

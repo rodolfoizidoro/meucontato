@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/navContactList"
-        android:icon="@drawable/ic_nav_menu_info"
+        android:icon="@drawable/ic_nav_menu_contacts"
         android:title="@string/navigation_menu_contact_list" />
 
     <item
@@ -22,7 +22,7 @@
 
     <item
         android:id="@+id/navProfiles"
-        android:icon="@drawable/ic_nav_menu_info"
+        android:icon="@drawable/ic_nav_menu_profiles"
         android:title="@string/navigation_menu_profiles" />
 
 </menu>
