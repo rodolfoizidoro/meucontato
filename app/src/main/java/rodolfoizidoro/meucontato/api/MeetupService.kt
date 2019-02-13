@@ -28,13 +28,5 @@ interface MeetupService {
         @Query("sign") sign: Boolean?
     ): Call<MeetupResponse>
 
-//    @GET("/find/events")
-//    fun rxFindEvents(
-//        @Query("key") key: String,
-//        @Query("lat") lat: Double?,
-//        @Query("lon") lon: Double?,
-//        @Query("radius") radius: Int?,
-//        @Query("fields") fields: String,
-//        @Query("sign") sign: Boolean?
-//    ): Call<List<MeetupEvent>>
+
 }

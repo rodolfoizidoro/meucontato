@@ -23,8 +23,8 @@ object AppModule {
 
         single<MeetupService> {
             Retrofit.Builder()
-                .baseUrl("")
-                .addConverterFactory(get())
+                .baseUrl("https://api.meetup.com")
+                .addConverterFactory(GsonConverterFactory.create(get()))
                 .build()
                 .create(MeetupService::class.java)
         }

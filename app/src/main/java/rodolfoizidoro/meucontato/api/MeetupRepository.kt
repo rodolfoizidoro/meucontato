@@ -3,7 +3,7 @@ package rodolfoizidoro.meucontato.api
 import retrofit2.Call
 import rodolfoizidoro.meucontato.model.CityResponse
 
-class MeetupRepository(val service: MeetupService) {
+class MeetupRepository(private val service: MeetupService) {
 
     companion object {
         const val API_KEY = "51374c1150477771455c6642b7d5670"
