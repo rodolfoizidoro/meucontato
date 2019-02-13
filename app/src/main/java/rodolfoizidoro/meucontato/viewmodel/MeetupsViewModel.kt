@@ -11,9 +11,9 @@ import rodolfoizidoro.meucontato.api.MeetupRepository
 import rodolfoizidoro.meucontato.model.CityResponse
 
 class MeetupsViewModel(val repository: MeetupRepository) : ViewModel() {
-
-    fun searchCity(city : String): Call<CityResponse> {
-       return  repository.findCity("Rio")
+//
+//    fun searchCity(city : String): Call<CityResponse> {
+//       return  repository.findCity("Rio")
 //        a.enqueue(object : Callback<CityResponse> {
 //            override fun onFailure(call: Call<CityResponse>, t: Throwable)
 //             {
@@ -27,6 +27,6 @@ class MeetupsViewModel(val repository: MeetupRepository) : ViewModel() {
 //            }
 //
 //        })
-    }
+//    }
 
 }

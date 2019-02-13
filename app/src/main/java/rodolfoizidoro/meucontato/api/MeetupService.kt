@@ -1,5 +1,6 @@
 package rodolfoizidoro.meucontato.api
 
+import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,7 +14,7 @@ interface MeetupService {
         @Query("query") query: String,
         @Query("page") page: Int?,
         @Query("sign") sign: Boolean?
-    ): Call<CityResponse>
+    ): Deferred<CityResponse>
 
 
     @GET("/2/open_events")

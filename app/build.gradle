@@ -50,7 +50,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //Google Support
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
@@ -68,7 +67,10 @@ dependencies {
     implementation 'org.jetbrains.anko:anko-commons:0.10.8'
     implementation 'org.jetbrains.anko:anko-design:0.10.8'
 
-    // AndroidX (based on koin-android)
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
 
     // Koin AndroidX Scope feature
     implementation "org.koin:koin-androidx-scope:$koinVersion"
@@ -88,6 +90,8 @@ dependencies {
     // Retrofit and GSON
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+    implementation("com.squareup.okhttp3:logging-interceptor:3.11.0")
 
     //ReactiveX
     implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
