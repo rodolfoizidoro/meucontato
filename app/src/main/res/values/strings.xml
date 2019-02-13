@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Meu Contato</string>
 
-   <!--Login-->
+    <!--Login-->
     <string name="login_activity_title">Sign in</string>
     <string name="login_google_button">Sign In with Google</string>
     <string name="login_error">Falha ao fazer login</string>
@@ -12,4 +12,5 @@
     <string name="navigation_menu_share">Compartilhar</string>
     <string name="navigation_menu_info">Informações</string>
     <string name="navigation_menu_profiles">Perfis</string>
+    <string name="filter_city_query_hint">Buscar cidade</string>
 </resources>

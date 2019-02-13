@@ -10,11 +10,11 @@
         android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-            android:id="@+id/toolbarMeetup"
+            android:id="@+id/tbMeetups"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:elevation="12dp">
+            android:elevation="4dp">
 
         <RelativeLayout
                 android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:orientation="vertical">
 
             <androidx.appcompat.widget.SearchView
-                    android:id="@+id/searchMeetup"
+                    android:id="@+id/svMeetups"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
@@ -33,9 +33,9 @@
                     app:searchIcon="@null"/>
 
             <LinearLayout
-                    android:id="@+id/meetup_search_city"
+                    android:id="@+id/llSearchCity"
                     android:layout_width="match_parent"
-                    android:layout_below="@+id/searchMeetup"
+                    android:layout_below="@+id/svMeetups"
                     android:layout_height="48dp"
                     android:orientation="horizontal">
                 <ImageView
@@ -46,7 +46,7 @@
                         app:srcCompat="@drawable/ic_widget_user_contact_address"/>
 
                 <TextView
-                        android:id="@+id/meetup_city"
+                        android:id="@+id/tvMeetupCity"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:paddingLeft="16dp"
@@ -65,6 +65,6 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/toolbarMeetup"
+            android:layout_below="@+id/tbMeetups"
             android:layout_marginTop="10dp"/>
 </RelativeLayout>

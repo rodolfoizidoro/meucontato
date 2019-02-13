@@ -7,6 +7,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import rodolfoizidoro.meucontato.R
 import rodolfoizidoro.meucontato.util.loadFragment
 import rodolfoizidoro.meucontato.view.fragments.*
+import android.content.Intent
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,5 +59,9 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         loadFragment { replace(R.id.frmContainer, ContactsFragment.newInstance(), ContactsFragment.TAG) }
+    }
+
+   public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }
