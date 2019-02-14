@@ -15,4 +15,7 @@ data class City(
     val lon: Double,
     @SerializedName("localized_country_name")
     val country: String
-) : Serializable
+) : Serializable {
+
+    fun fullName() = "$name, $country"
+}

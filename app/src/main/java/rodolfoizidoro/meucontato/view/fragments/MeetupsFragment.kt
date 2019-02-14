@@ -1,5 +1,6 @@
 package rodolfoizidoro.meucontato.view.fragments
 
+import android.app.Activity
 import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -16,6 +17,7 @@ import retrofit2.Response
 
 import rodolfoizidoro.meucontato.R
 import rodolfoizidoro.meucontato.common.Navigator
+import rodolfoizidoro.meucontato.model.City
 import rodolfoizidoro.meucontato.model.CityResponse
 import rodolfoizidoro.meucontato.view.activity.FilterCityActivity
 import rodolfoizidoro.meucontato.viewmodel.MeetupsViewModel
@@ -24,6 +26,7 @@ class MeetupsFragment : Fragment() {
 
     companion object {
         const val TAG = "MeetupsFragment"
+        const val REQUEST_CODE_FILTER_CITY = 12
         fun newInstance() = MeetupsFragment()
     }
 
@@ -35,22 +38,17 @@ class MeetupsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("RODOLFOMEETUP", "")
         llSearchCity.setOnClickListener {
-            startActivityForResult(Intent(activity, FilterCityActivity::class.java), 0)
+            startActivityForResult(Intent(activity, FilterCityActivity::class.java), REQUEST_CODE_FILTER_CITY)
         }
-//        val a = viewModel.searchCity("sao paulo")
-//        a.enqueue(object : Callback<CityResponse> {
-//            override fun onFailure(call: Call<CityResponse>, t: Throwable)
-//             {
-//                 val b = call
-//              Log.d("RODOLFOMEETUP", "")
-//            }
-//
-//            override fun onResponse(call: Call<CityResponse>, response: Response<CityResponse>) {
-//                val b = response.body()
-//                Log.d("RODOLFOMEETUP", "")
-//            }
-//        })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            val a = data?.let {
+                data.getSerializableExtra(FilterCityActivity.EXTRA_CITY) as City
+            }
+        }
     }
 }
