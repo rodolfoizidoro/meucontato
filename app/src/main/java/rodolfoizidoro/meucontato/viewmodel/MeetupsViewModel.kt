@@ -1,32 +1,32 @@
 package rodolfoizidoro.meucontato.viewmodel
 
-import android.app.Application
-import android.util.Log
-import androidx.lifecycle.ViewModel
-import org.koin.core.Koin
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import br.com.wellingtoncosta.coroutines.ui.base.CoroutineViewModel
+import kotlinx.coroutines.launch
 import rodolfoizidoro.meucontato.api.MeetupRepository
-import rodolfoizidoro.meucontato.model.CityResponse
+import rodolfoizidoro.meucontato.model.City
+import rodolfoizidoro.meucontato.model.MeetupEvent
 
-class MeetupsViewModel(val repository: MeetupRepository) : ViewModel() {
-//
-//    fun searchCity(name : String): Call<CityResponse> {
-//       return  repository.findCity("Rio")
-//        a.enqueue(object : Callback<CityResponse> {
-//            override fun onFailure(call: Call<CityResponse>, t: Throwable)
-//             {
-//                 val b = call
-//              Log.d("RODOLFOMEETUP", "")
-//            }
-//
-//            override fun onResponse(call: Call<CityResponse>, response: Response<CityResponse>) {
-//                val b = response.body()
-//                Log.d("RODOLFOMEETUP", "")
-//            }
-//
-//        })
-//    }
+class MeetupsViewModel(private val repository: MeetupRepository) : CoroutineViewModel()  {
+
+
+    private val response: MutableLiveData<List<MeetupEvent>> = MutableLiveData()
+    fun meetupResponse() = response as LiveData<List<MeetupEvent>>
+
+    fun find(query: String, city: City) {
+        jobs add launch {
+            try {
+                response.value = (repository.findEvent(query, city).await().meetups)
+            } catch (t: Throwable) {
+                val erro = t
+                val erro2 = t
+
+            } finally {
+                val b = ""
+                val c = ""
+            }
+        }
+    }
 
 }

@@ -1,61 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:foreground="?selectableItemBackground"
-        app:cardCornerRadius="6dp">
-    <RelativeLayout
-            android:id="@+id/widget_meetup_root"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+                name="event"
+                type="rodolfoizidoro.meucontato.model.MeetupEvent"/>
+    </data>
+    <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <ImageView
-                android:id="@+id/meetup_icon"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:scaleType="center"
-                android:layout_alignParentStart="true"/>
-
-        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:foreground="?selectableItemBackground"
+            app:cardCornerRadius="6dp">
+        <RelativeLayout
+                android:id="@+id/root"
                 android:layout_width="match_parent"
-                android:padding="4dp"
-                android:layout_centerVertical="true"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/meetup_icon"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
+            <ImageView
+                    android:id="@+id/ivEventIcon"
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
+                    android:scaleType="center"
+                    android:layout_alignParentStart="true"/>
 
-            <TextView
-                    android:id="@+id/meetup_group"
+            <LinearLayout
                     android:layout_width="match_parent"
+                    android:padding="4dp"
+                    android:layout_centerVertical="true"
                     android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    tools:ignore="MissingPrefix"
-                    android:textSize="16sp"
-                    android:maxLines="2"
-                    tools:text="Developers SP Developers SP Developers SP"/>
+                    android:layout_toEndOf="@+id/ivEventIcon"
+                    android:orientation="vertical">
 
-            <TextView
-                    android:id="@+id/meetup_event_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MissingPrefix"
-                    android:padding="2dp"
-                    android:maxLines="2"
-                    android:textSize="13sp"
-                    tools:text="Primeiros passos com Spring MVC JAVA e Spring Boot"/>
+                <TextView
+                        android:id="@+id/tvEventGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        tools:ignore="MissingPrefix"
+                        android:textSize="16sp"
+                        android:maxLines="2"
+                        android:text="@{event.group.name}"
+                        tools:text="Developers SP Developers SP Developers SP"/>
 
-            <TextView
-                    android:id="@+id/meetup_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MissingPrefix"
-                    android:padding="2dp"
-                    android:textSize="12sp"
-                    tools:text="Aug 17, 7:00 PM"/>
-        </LinearLayout>
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+                <TextView
+                        android:id="@+id/tvEventTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="MissingPrefix"
+                        android:text="@{event.name}"
+                        android:padding="2dp"
+                        android:maxLines="2"
+                        android:textSize="13sp"
+                        tools:text="Primeiros passos com Spring MVC JAVA e Spring Boot"/>
+
+                <TextView
+                        android:id="@+id/tvEventDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="MissingPrefix"
+                        android:padding="2dp"
+                        android:textSize="12sp"
+                        tools:text="Aug 17, 7:00 PM"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

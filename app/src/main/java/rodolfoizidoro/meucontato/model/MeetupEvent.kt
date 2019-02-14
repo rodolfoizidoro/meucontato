@@ -10,7 +10,7 @@ class MeetupEvent
     var yesRsvpCount: Int = 0,
     var eventUrl: String?,
     var description: String?,
-    var group: Group?,
+    var group: Group,
     var venue: Venue?,
     var fee: Fee?
 ) : Serializable {
