@@ -5,6 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 import rodolfoizidoro.meucontato.model.CityResponse
+import rodolfoizidoro.meucontato.model.MeetupEvent
 import rodolfoizidoro.meucontato.model.MeetupResponse
 
 interface MeetupService {
@@ -27,7 +28,5 @@ interface MeetupService {
         @Query("fields") fields: String,
         @Query("page") page: Int?,
         @Query("sign") sign: Boolean?
-    ): Call<MeetupResponse>
-
-
+    ): Deferred<MeetupResponse>
 }
