@@ -12,15 +12,12 @@ import rodolfoizidoro.meucontato.model.CityResponse
 class FilterCityViewModel(private val repository: MeetupRepository) : CoroutineViewModel() {
 
     private val cityResponse: MutableLiveData<List<City>> = MutableLiveData()
-    var d: List<City>? = emptyList()
-
     fun cityResponse() = cityResponse as LiveData<List<City>>
 
-    fun find(city: String) {
+    fun find(query: String) {
         jobs add launch {
             try {
-                cityResponse.value = (repository.findCity("Rio").await().cities)
-
+                cityResponse.value = (repository.findCity(query).await().cities)
             } catch (t: Throwable) {
 
                 val erro = t

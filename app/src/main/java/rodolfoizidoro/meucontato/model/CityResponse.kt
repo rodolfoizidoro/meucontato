@@ -1,6 +1,7 @@
 package rodolfoizidoro.meucontato.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class CityResponse(
     @SerializedName("results")
@@ -8,9 +9,10 @@ data class CityResponse(
 )
 
 data class City(
-    val city: String,
+    @SerializedName("city")
+    val name: String,
     val lat: Double,
     val lon: Double,
     @SerializedName("localized_country_name")
     val country: String
-)
+) : Serializable

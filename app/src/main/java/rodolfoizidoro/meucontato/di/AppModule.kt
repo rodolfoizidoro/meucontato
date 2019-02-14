@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
@@ -13,6 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import rodolfoizidoro.meucontato.BuildConfig
 import rodolfoizidoro.meucontato.api.MeetupRepository
 import rodolfoizidoro.meucontato.api.MeetupService
+import rodolfoizidoro.meucontato.common.SharedPrefController
 import rodolfoizidoro.meucontato.viewmodel.FilterCityViewModel
 import rodolfoizidoro.meucontato.viewmodel.MeetupsViewModel
 import java.util.concurrent.TimeUnit
@@ -56,6 +58,7 @@ object AppModule {
         single {
             MeetupRepository(get())
         }
+        single { SharedPrefController(androidContext()) }
         viewModel { MeetupsViewModel(get()) }
         viewModel { FilterCityViewModel(get()) }
     }
