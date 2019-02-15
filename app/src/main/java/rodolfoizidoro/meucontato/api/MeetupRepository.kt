@@ -22,7 +22,7 @@ class MeetupRepository(private val service: MeetupService) {
 
     suspend fun findEvent(query: String, city: City): Deferred<MeetupResponse> {
         return withContext(IO) {
-            val fields = "group_key_photo, group_photo, group_category"
+            val fields = "group_key_photo, group_photo, group_category, photo_url"
             async { service.findEvents(API_KEY, query, city.lat, city.lon, 10, fields, 30, true).await() }
         }
     }
