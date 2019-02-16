@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.meetup_fragment.*
 import org.jetbrains.anko.startActivity
@@ -39,6 +40,7 @@ class MeetupsFragment : Fragment() {
     private val sharedPrefController: SharedPrefController by inject()
     private var city: City = sharedPrefController.getCity()
     private val searchSubject = BehaviorSubject.create<String>()
+    private lateinit var disposable: Disposable
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding =
@@ -83,9 +85,14 @@ class MeetupsFragment : Fragment() {
             }
         })
 
-        searchSubject.debounce(500, TimeUnit.MILLISECONDS)
+        disposable = searchSubject.debounce(500, TimeUnit.MILLISECONDS)
             .filter { it.length > 3 }
             .subscribe { viewModel.find(it, city) }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposable.dispose()
     }
 
     private fun setupRecyclerView() {
@@ -94,8 +101,8 @@ class MeetupsFragment : Fragment() {
 
     private fun observerCities() {
         viewModel.meetupResponse().observe(this, Observer { list ->
-            rvMeetups.adapter = MeetupsAdapter(list) {
-                context?.startActivity<MeetupDetailActivity>(MeetupDetailActivity.EXTRA_MEETUP to it)
+            rvMeetups.adapter = MeetupsAdapter(list) { meetupEvent ->
+                context?.startActivity<MeetupDetailActivity>(MeetupDetailActivity.EXTRA_MEETUP to meetupEvent)
             }
         })
     }

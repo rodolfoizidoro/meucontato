@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.activity_filter_city.*
 import org.koin.android.ext.android.inject
@@ -29,6 +30,7 @@ class FilterCityActivity : AppCompatActivity() {
     private val viewModel by viewModel<FilterCityViewModel>()
     private val sharedPref: SharedPrefController  by inject()
     private val searchSubject = BehaviorSubject.create<String>()
+    private lateinit var disposable: Disposable
     private val binding by lazy {
         DataBindingUtil.setContentView<ActivityFilterCityBinding>(this, R.layout.activity_filter_city)
     }
@@ -58,6 +60,11 @@ class FilterCityActivity : AppCompatActivity() {
         binding.rvFilterCity.layoutManager = LinearLayoutManager(this)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        disposable.dispose()
+    }
+
     private fun setupSearchView() {
         binding.svFilterCity.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -71,7 +78,7 @@ class FilterCityActivity : AppCompatActivity() {
             }
         })
 
-        searchSubject.debounce(500, TimeUnit.MILLISECONDS)
+        disposable = searchSubject.debounce(500, TimeUnit.MILLISECONDS)
             .filter { it.length > 3 }
             .subscribe { viewModel.find(it) }
     }
