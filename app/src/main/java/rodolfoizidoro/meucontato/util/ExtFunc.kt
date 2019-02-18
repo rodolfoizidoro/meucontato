@@ -1,5 +1,6 @@
 package rodolfoizidoro.meucontato.util
 
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,9 @@ fun AppCompatActivity.addFragment(frameId: Int, fragment: Fragment, tag: String)
 
 
 fun AppCompatActivity.replaceFragment(frameId: Int, fragment: Fragment, tag: String) {
-    supportFragmentManager.inTransaction { replace(frameId, fragment, tag) }
+    Handler().postDelayed({
+        supportFragmentManager.inTransaction { replace(frameId, fragment, tag) }
+    }, 100)
 }
 
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
