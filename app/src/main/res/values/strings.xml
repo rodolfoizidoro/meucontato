@@ -13,11 +13,17 @@
     <string name="navigation_menu_share">Compartilhar</string>
     <string name="navigation_menu_info">Informações</string>
     <string name="navigation_menu_profiles">Perfis</string>
+
+    <!--Filter City-->
     <string name="filter_city_query_hint">Buscar cidade</string>
 
     <!--Meetup Detail-->
     <string name="meetup_detail_confirmation">%s confirmações</string>
-    <string name="show_more">Ver mais</string>
-    <string name="show_less">Ver menos</string>
+    <string name="meetup_detail_show_more">Ver mais</string>
+    <string name="meetup_detail_show_less">Ver menos</string>
+    <string name="meetup_detail_more_info">Mais informaçoes</string>
+
+    <!--Share-->
+    <string name="share_title">Compartilhar Contato</string>
 
 </resources>

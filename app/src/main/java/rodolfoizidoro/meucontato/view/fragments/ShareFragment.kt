@@ -28,8 +28,7 @@ class ShareFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ShareViewModel::class.java)
-        // TODO: Use the ViewModel
+        //viewModel = ViewModelProviders.of(this).get(ShareViewModel::class.java)
     }
 
 }

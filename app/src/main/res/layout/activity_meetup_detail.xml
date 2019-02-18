@@ -23,8 +23,8 @@
                     android:id="@+id/ivBack"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="10dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="10dp"
                     android:tint="@android:color/white"
                     app:srcCompat="@drawable/ic_arrow_back"/>
 
@@ -76,12 +76,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
-                <!--<rodolfoizidoro.meucontato.widget.IconTitleMessage-->
-                <!--app:icon="@{@drawable/ic_money}"-->
-                <!--android:visibility="@{viewModel.event.hasFee() ? View.VISIBLE : View.GONE}"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"/>-->
-
                 <com.borjabravo.readmoretextview.ReadMoreTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -91,17 +85,17 @@
                         android:textColorLink="@color/colorPrimary"
                         android:text="@{Html.fromHtml(viewModel.event.eventDescription())}"
                         app:colorClickableText="@color/colorPrimary"
-                        app:trimCollapsedText="@string/show_more"
-                        app:trimExpandedText="@string/show_less"
+                        app:trimCollapsedText="@string/meetup_detail_show_more"
+                        app:trimExpandedText="@string/meetup_detail_show_less"
                         app:trimLength="200"
                         app:trimMode="trimModeLength"/>
 
                 <fragment
-                android:id="@+id/fgMap"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="20dp"/>
+                        android:id="@+id/fgMap"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="20dp"/>
 
                 <Button
                         android:id="@+id/btMoreInfo"
@@ -109,7 +103,7 @@
                         android:background="@drawable/bg_button_primary"
                         android:textColor="@color/white"
                         android:layout_width="match_parent"
-                        android:text="Mais informaçoes"
+                        android:text="@string/meetup_detail_more_info"
                         android:layout_height="48dp"/>
             </LinearLayout>
         </ScrollView>
