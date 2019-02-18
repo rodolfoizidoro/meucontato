@@ -83,7 +83,6 @@ class MeetupsFragment : Fragment() {
                 return true
             }
         })
-
         disposable = searchSubject.debounce(500, TimeUnit.MILLISECONDS)
             .filter { it.length > 3 }
             .subscribe { viewModel.find(it, city) }

@@ -18,6 +18,9 @@
             android:theme="@style/AppTheme">
 
         <meta-data
+                android:name="io.fabric.ApiKey"
+                android:value="e6e179190b1902227d6bf6f81bd409291a11566a"/>
+        <meta-data
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version" />
         <meta-data
