@@ -43,8 +43,7 @@ class MeetupsFragment : Fragment() {
     private lateinit var disposable: Disposable
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding =
-            DataBindingUtil.inflate<MeetupFragmentBinding>(inflater, R.layout.meetup_fragment, container, false)
+        val binding = DataBindingUtil.inflate<MeetupFragmentBinding>(inflater, R.layout.meetup_fragment, container, false)
         binding.setLifecycleOwner(this)
         return binding.root
     }

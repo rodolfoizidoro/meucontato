@@ -3,7 +3,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="viewModel" type="rodolfoizidoro.meucontato.viewmodel.MeetupDetailViewModel" />
+        <import type="android.text.Html"/>
+        <variable name="viewModel" type="rodolfoizidoro.meucontato.viewmodel.MeetupDetailViewModel"/>
     </data>
 
     <LinearLayout
@@ -19,7 +20,7 @@
                 android:orientation="horizontal">
 
             <ImageView
-                    android:id="@+id/meetup_detail_back"
+                    android:id="@+id/ivBack"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingLeft="16dp"
@@ -28,7 +29,7 @@
                     app:srcCompat="@drawable/ic_arrow_back"/>
 
             <TextView
-                    android:id="@+id/meetup_detail_toolbar"
+                    android:id="@+id/tvToolbar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:ellipsize="marquee"
@@ -50,57 +51,66 @@
                     android:layout_marginTop="2dp">
 
                 <rodolfoizidoro.meucontato.widget.IconTitleMessage
-                        android:id="@+id/meetup_detail_time"
                         android:layout_width="match_parent"
+                        app:icon="@{@drawable/ic_timer}"
+                        app:title="@{viewModel.event.dateDetail()}"
+                        app:message="@{viewModel.event.dateDetailTime()}"
                         android:layout_height="wrap_content"/>
 
                 <rodolfoizidoro.meucontato.widget.IconTitleMessage
-                        android:id="@+id/meetup_detail_location"
                         android:layout_width="match_parent"
+                        app:icon="@{@drawable/ic_address}"
+                        app:title="@{viewModel.event.venueName()}"
+                        app:message="@{viewModel.event.venueAddress()}"
                         android:layout_height="wrap_content"/>
 
                 <rodolfoizidoro.meucontato.widget.IconTitleMessage
-                        android:id="@+id/meetup_detail_host"
                         android:layout_width="match_parent"
+                        app:icon="@{@drawable/ic_meetup_group}"
+                        app:title="@{viewModel.event.groupTitle()}"
                         android:layout_height="wrap_content"/>
 
                 <rodolfoizidoro.meucontato.widget.IconTitleMessage
-                        android:id="@+id/meetup_detail_confirmation"
+                        app:icon="@{@drawable/ic_user_confirmation}"
+                        app:title="@{@string/meetup_detail_confirmation(viewModel.event.yesRsvpCount)}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
-                <rodolfoizidoro.meucontato.widget.IconTitleMessage
-                        android:id="@+id/meetup_detail_fee"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                <!--<com.borjabravo.readmoretextview.ReadMoreTextView-->
-                <!--android:id="@+id/meetup_detail_description"-->
+                <!--<rodolfoizidoro.meucontato.widget.IconTitleMessage-->
+                <!--app:icon="@{@drawable/ic_money}"-->
+                <!--android:visibility="@{viewModel.event.hasFee() ? View.VISIBLE : View.GONE}"-->
                 <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@color/dark_gray_20_percent"-->
-                <!--android:padding="16dp"-->
-                <!--android:textSize="16sp"-->
-                <!--app:colorClickableText="@color/primary"-->
-                <!--app:trimCollapsedText="@string/show_more"-->
-                <!--app:trimExpandedText="@string/show_less"-->
-                <!--app:trimLength="200"-->
-                <!--app:trimMode="trimModeLength"/>-->
+                <!--android:layout_height="wrap_content"/>-->
 
-                <!--<fragment-->
-                <!--android:id="@+id/map"-->
-                <!--android:name="com.google.android.gms.maps.SupportMapFragment"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="150dp"-->
-                <!--android:layout_marginTop="20dp" />-->
+                <com.borjabravo.readmoretextview.ReadMoreTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/darkGrayA20"
+                        android:padding="16dp"
+                        android:textSize="16sp"
+                        android:textColorLink="@color/colorPrimary"
+                        android:text="@{Html.fromHtml(viewModel.event.eventDescription())}"
+                        app:colorClickableText="@color/colorPrimary"
+                        app:trimCollapsedText="@string/show_more"
+                        app:trimExpandedText="@string/show_less"
+                        app:trimLength="200"
+                        app:trimMode="trimModeLength"/>
+
+                <fragment
+                android:id="@+id/fgMap"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"/>
 
                 <Button
-                        android:id="@+id/meetup_detail_more_info"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
+                        android:id="@+id/btMoreInfo"
+                        android:layout_margin="16dp"
+                        android:background="@drawable/bg_button_primary"
+                        android:textColor="@color/white"
                         android:layout_width="match_parent"
                         android:text="Mais informaçoes"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="48dp"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

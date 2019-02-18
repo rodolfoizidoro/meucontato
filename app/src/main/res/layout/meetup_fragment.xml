@@ -42,7 +42,7 @@
                             android:layout_height="match_parent"
                             android:paddingLeft="16dp"
                             android:paddingRight="10dp"
-                            app:srcCompat="@drawable/ic_widget_user_contact_address"/>
+                            app:srcCompat="@drawable/ic_address"/>
 
                     <TextView
                             android:id="@+id/tvMeetupCity"

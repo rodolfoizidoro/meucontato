@@ -11,7 +11,7 @@ data class MeetupEvent
     var name: String,
     var time: Long,
     var yesRsvpCount: Int = 0,
-    var eventUrl: String?,
+    var eventUrl: String,
     var description: String?,
     var group: Group,
     var photoUrl: String?,
@@ -19,57 +19,54 @@ data class MeetupEvent
     var fee: Fee?
 ) : Serializable {
 
+    fun groupTitle(): String = group.name
+    fun dateEvent(): String {
+        val sdfDate = SimpleDateFormat("dd/MM HH:mm")
+        val now = Date(time)
+        return sdfDate.format(now)
+    }
 
-    val groupTitle: String
-        get() = group.name
+    fun dateDetail(): String {
+        val sdfDate = SimpleDateFormat("EEEE, d MMM", Locale("pt", "BR"))
+        val now = Date(time!!)
+        return sdfDate.format(now)
+    }
 
+    fun dateDetailTime(): String {
+        return "${dateTime()} - ${dateTimeDuration()}"
+    }
 
-    val date: String
-        get() {
-            val sdfDate = SimpleDateFormat("dd/MM HH:mm")
-            val now = Date(time)
-            return sdfDate.format(now)
-        }
+    private fun dateTime(): String {
+        val sdfDate = SimpleDateFormat("HH:mm")
+        val now = Date(time!!)
+        return sdfDate.format(now)
+    }
 
-    val dateDetail: String
-        get() {
-            val sdfDate = SimpleDateFormat("EEEE, d MMM", Locale("pt", "BR"))
-            val now = Date(time!!)
-            return sdfDate.format(now)
-        }
+    private fun dateTimeDuration(): String {
+        val sdfDate = SimpleDateFormat("HH:mm")
+        val now = Date(time!! + durationTime())
+        return sdfDate.format(now)
+    }
 
-    val dateTime: String
-        get() {
-            val sdfDate = SimpleDateFormat("HH:mm")
-            val now = Date(time!!)
-            return sdfDate.format(now)
-        }
+    fun venueName(): String = venue!!.name ?: "Não informado"
 
-    val dateTimeDuration: String
-        get() {
-            val sdfDate = SimpleDateFormat("HH:mm")
-            val now = Date(time!! + getDura())
-            return sdfDate.format(now)
-        }
+    fun venueAddress(): String = venue!!.address1 ?: "Acesse mais informações para obter o local."
 
-    val venueName: String
-        get() =  venue!!.name ?: "Não informado"
+    fun locationCoord(): LatLng = if (hasLocationMap()) LatLng(venue!!.lat!!, venue!!.lon!!) else LatLng(0.0, 0.0)
 
-    val venueAddress: String
-        get() =  venue!!.address1 ?: "Acesse mais informações para obter o local."
-
-    val locationCoord: LatLng
-        get() = if(hasLocationMap()) LatLng(venue!!.lat!!, venue!!.lon!!) else LatLng(0.0,0.0)
-
-    fun getDura(): Long {
+    private fun durationTime(): Long {
         return duration ?: 0L
     }
 
-    fun getDesc(): String {
+    fun eventDescription(): String {
         return description ?: "n/a"
     }
 
     fun hasLocationMap(): Boolean {
         return venue != null && venue!!.lat != null && venue!!.lon != null
+    }
+
+    fun hasFee(): Boolean {
+        return fee != null
     }
 }

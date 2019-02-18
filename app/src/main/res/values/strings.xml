@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Meu Contato</string>
+    <string name="google_maps_key">AIzaSyC0ffbXn1PR63WgPBN16gWJ4B8Q7CUBTU0</string>
 
     <!--Login-->
     <string name="login_activity_title">Sign in</string>
@@ -13,4 +14,10 @@
     <string name="navigation_menu_info">Informações</string>
     <string name="navigation_menu_profiles">Perfis</string>
     <string name="filter_city_query_hint">Buscar cidade</string>
+
+    <!--Meetup Detail-->
+    <string name="meetup_detail_confirmation">%s confirmações</string>
+    <string name="show_more">Ver mais</string>
+    <string name="show_less">Ver menos</string>
+
 </resources>

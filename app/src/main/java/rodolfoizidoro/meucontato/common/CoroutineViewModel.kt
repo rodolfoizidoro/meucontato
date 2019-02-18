@@ -1,4 +1,4 @@
-package br.com.wellingtoncosta.coroutines.ui.base
+package rodolfoizidoro.meucontato.common
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope

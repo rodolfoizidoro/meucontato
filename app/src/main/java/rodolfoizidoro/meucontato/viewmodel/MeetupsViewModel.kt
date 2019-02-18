@@ -2,7 +2,7 @@ package rodolfoizidoro.meucontato.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import br.com.wellingtoncosta.coroutines.ui.base.CoroutineViewModel
+import rodolfoizidoro.meucontato.common.CoroutineViewModel
 import kotlinx.coroutines.launch
 import rodolfoizidoro.meucontato.api.MeetupRepository
 import rodolfoizidoro.meucontato.model.City
