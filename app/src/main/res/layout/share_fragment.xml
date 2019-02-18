@@ -48,8 +48,6 @@
                     android:src="@drawable/ic_share_receive_qr_code"
                     android:layout_width="60dp"
                     android:layout_height="60dp"/>
-
-
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

@@ -9,7 +9,7 @@ ext {
     koinVersion = '1.0.2'
     firebaseCoreVersion = '16.0.7'
     firebaseAuthVersion = '16.1.0'
-    firebaseFirestoreVersion = '18.0.0'
+    firebaseFirestoreVersion = '18.0.1'
     firebaseStorageVersion = '16.0.5'
     googleServicesVersion = '4.0.2'
     playServicesVersion = '16.0.1'

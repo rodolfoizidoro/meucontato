@@ -1,5 +1,6 @@
 package rodolfoizidoro.meucontato.di
 
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -28,7 +29,7 @@ object AppModule {
             .readTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
             .writeTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
 
-        if(BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG) {
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
             client.addInterceptor(logging)
@@ -55,11 +56,11 @@ object AppModule {
                 .create(MeetupService::class.java)
         }
 
-        single {
-            MeetupRepository(get())
-        }
+        single { MeetupRepository(get()) }
         single { SharedPrefController(androidContext()) }
         viewModel { MeetupsViewModel(get()) }
         viewModel { FilterCityViewModel(get()) }
+
+        single { FirebaseFirestore.getInstance() }
     }
 }
