@@ -12,6 +12,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.design.snackbar
+import org.jetbrains.anko.startActivity
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import rodolfoizidoro.meucontato.R
 import rodolfoizidoro.meucontato.viewmodel.LoginViewModel
@@ -19,7 +21,7 @@ import rodolfoizidoro.meucontato.viewmodel.LoginViewModel
 class LoginActivity : AppCompatActivity() {
 
     private var googleApiClient: GoogleApiClient? = null
-    private var fbAuth = FirebaseAuth.getInstance()
+    private val fbAuth : FirebaseAuth by inject()
     private val viewModel by viewModel<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +30,22 @@ class LoginActivity : AppCompatActivity() {
 
         initGoogleSignIn()
         btnLoginGoogle.setOnClickListener { signIn() }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_GOOGLE_SIGN_IN) {
+            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
+            if (result.isSuccess) {
+                val account = result.signInAccount
+                if (account != null) {
+                    firebaseAuthWithGoogle(account)
+                } else {
+                    showErrorSignIn()
+                }
+            } else {
+                showErrorSignIn()
+            }
+        }
     }
 
     private fun initGoogleSignIn() {
@@ -53,23 +71,6 @@ class LoginActivity : AppCompatActivity() {
         )
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_GOOGLE_SIGN_IN) {
-            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
-            if (result.isSuccess) {
-                val account = result.signInAccount
-                if (account != null) {
-                    firebaseAuthWithGoogle(account)
-                } else {
-                    showErrorSignIn()
-                }
-            } else {
-                showErrorSignIn()
-            }
-        }
-    }
-
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         val email = account.email ?: ""
@@ -78,14 +79,20 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val isNewUser = task.result?.additionalUserInfo?.isNewUser ?: false
-                    registerDataForNewUser(name, email)
                     if (isNewUser) {
                         registerDataForNewUser(name, email)
                     }
+                    openMainActivity()
+
                 } else {
                     showErrorSignIn()
                 }
             }
+    }
+
+    private fun openMainActivity() {
+        startActivity<MainActivity>()
+        finish()
     }
 
     private fun registerDataForNewUser(name: String, email: String) {
