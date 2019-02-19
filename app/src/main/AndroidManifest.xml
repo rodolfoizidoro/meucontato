@@ -27,37 +27,38 @@
                 android:name="com.google.android.geo.API_KEY"
                 android:value="@string/google_maps_key" />
 
-        <!--<activity-->
-                <!--android:name=".view.activity.MainActivity"-->
-                <!--android:label="@string/app_name"-->
-                <!--android:theme="@style/AppTheme"-->
-                <!--android:windowSoftInputMode="adjustNothing">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
-                <!--<action android:name="android.intent.action.VIEW"/>-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-
         <activity
-        android:name=".view.activity.LoginActivity"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:windowSoftInputMode="adjustNothing">
-        <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <action android:name="android.intent.action.VIEW"/>
+                android:name=".view.activity.MainActivity"
+                android:label="@string/app_name"
+                android:theme="@style/AppTheme"
+                android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.VIEW"/>
 
-        <category android:name="android.intent.category.LAUNCHER"/>
-        </intent-filter>
-        </activity>
-        <activity android:name=".view.activity.FilterCityActivity">
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
-        <!--<activity android:name=".view.activity.LoginActivity">-->
+        <!--<activity-->
+        <!--android:name=".view.activity.LoginActivity"-->
+        <!--android:label="@string/app_name"-->
+        <!--android:theme="@style/AppTheme"-->
+        <!--android:windowSoftInputMode="adjustNothing">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN"/>-->
+        <!--<action android:name="android.intent.action.VIEW"/>-->
+
+        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+        <!--</intent-filter>-->
         <!--</activity>-->
-        <!---->
+
+        <!--<activity android:name=".view.activity.FilterCityActivity">-->
+        <!--</activity>-->
+
+        <activity android:name=".view.activity.LoginActivity">
+        </activity>
+
 
         <activity
                 android:name=".view.activity.MeetupDetailActivity"

@@ -3,31 +3,31 @@ package rodolfoizidoro.meucontato.view.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.design.snackbar
-import org.jetbrains.anko.toast
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import rodolfoizidoro.meucontato.R
+import rodolfoizidoro.meucontato.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private var googleApiClient: GoogleApiClient? = null
     private var fbAuth = FirebaseAuth.getInstance()
+    private val viewModel by viewModel<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         initGoogleSignIn()
-
         btnLoginGoogle.setOnClickListener { signIn() }
-        registerDataForNewUser("teste2", "r@gmail.com")
     }
 
     private fun initGoogleSignIn() {
@@ -47,7 +47,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun signIn() {
         val signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient)
-        startActivityForResult(signInIntent,
+        startActivityForResult(
+            signInIntent,
             RC_GOOGLE_SIGN_IN
         )
     }
@@ -77,6 +78,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val isNewUser = task.result?.additionalUserInfo?.isNewUser ?: false
+                    registerDataForNewUser(name, email)
                     if (isNewUser) {
                         registerDataForNewUser(name, email)
                     }
@@ -86,44 +88,15 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    private fun registerDataForNewUser(name : String, email : String) {
-        val db = FirebaseFirestore.getInstance()
-        val uid = FirebaseAuth.getInstance().uid.toString()
-        val user : HashMap<String, Any>  = HashMap()
+    private fun registerDataForNewUser(name: String, email: String) {
+        viewModel.error().observe(this, Observer {
+            showErrorSignIn()
+        })
+        viewModel.success().observe(this, Observer {
+            rootLogin.snackbar("Sucessoo ao fazer login")
+        })
 
-        val profiles : HashMap<String, Any>  = HashMap()
-
-        val social : HashMap<String, Any>  = HashMap()
-        social["id"] = db.collection("user").document(uid).collection("social").document().id
-        social["tag"] = "gmail"
-        social["type"] = "email"
-        social["value"] = email
-
-        val socialPerfil : HashMap<String, Any>  = HashMap()
-        socialPerfil["id"] = db.collection("user").document(uid).collection("social").document().id
-        socialPerfil["checked"] = true
-        socialPerfil["id_social"] = social["id"].toString()
-
-        profiles["id"] = db.collection("user").document(uid).collection("profiles").document().id
-        profiles["name"] = "Perfil 1"
-        profiles["display_name"] = name
-        profiles["photo"] = uid
-        profiles["description"] = "Perfil de contato de $name"
-        profiles["profiles_social"] = arrayListOf(socialPerfil)
-
-        user["id"] = uid
-        user["name"] = name
-        user["email"] = email
-        user["profiles"] = arrayListOf(profiles)
-        user["social"] = arrayListOf(social)
-
-        val contato : HashMap<String, Any>  = HashMap()
-        contato[uid] = user
-
-        FirebaseFirestore.getInstance()
-            .collection("user").document(uid).set(user).addOnSuccessListener {
-                toast("sucesso")
-            }
+        viewModel.registerDataForNewUser(name, email)
     }
 
     private fun showErrorSignIn() {

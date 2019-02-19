@@ -1,5 +1,6 @@
 package rodolfoizidoro.meucontato.di
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
@@ -13,10 +14,12 @@ import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import rodolfoizidoro.meucontato.BuildConfig
+import rodolfoizidoro.meucontato.api.LoginRepository
 import rodolfoizidoro.meucontato.api.MeetupRepository
 import rodolfoizidoro.meucontato.api.MeetupService
 import rodolfoizidoro.meucontato.common.SharedPrefController
 import rodolfoizidoro.meucontato.viewmodel.FilterCityViewModel
+import rodolfoizidoro.meucontato.viewmodel.LoginViewModel
 import rodolfoizidoro.meucontato.viewmodel.MeetupsViewModel
 import java.util.concurrent.TimeUnit
 
@@ -39,6 +42,12 @@ object AppModule {
     }
 
     val MeuContatoModules = module {
+        single { FirebaseFirestore.getInstance() }
+        single { FirebaseAuth.getInstance() }
+        single { SharedPrefController(androidContext()) }
+    }
+
+    val MeetupModule = module {
         single<Gson> {
             GsonBuilder()
                 .setDateFormat("dd-MM-yyyy'T'HH:mm:ssZ")
@@ -57,10 +66,12 @@ object AppModule {
         }
 
         single { MeetupRepository(get()) }
-        single { SharedPrefController(androidContext()) }
         viewModel { MeetupsViewModel(get()) }
         viewModel { FilterCityViewModel(get()) }
+    }
 
-        single { FirebaseFirestore.getInstance() }
+    val LoginModule = module {
+        single { LoginRepository(get(), get()) }
+        viewModel { LoginViewModel(get()) }
     }
 }

@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.share_fragment.*
 
 import rodolfoizidoro.meucontato.R
 import rodolfoizidoro.meucontato.viewmodel.ShareViewModel
@@ -28,6 +30,9 @@ class ShareFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        ivShareSendQr.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+        }
         //viewModel = ViewModelProviders.of(this).get(ShareViewModel::class.java)
     }
 

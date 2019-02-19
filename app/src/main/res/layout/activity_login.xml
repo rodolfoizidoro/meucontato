@@ -34,5 +34,4 @@
             tools:background="@color/colorPrimary"
             android:layout_marginTop="48dp"
             android:background="@drawable/btn_google_signin_dark_selector"/>
-
 </LinearLayout>

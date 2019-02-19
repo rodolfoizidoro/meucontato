@@ -4,6 +4,8 @@ import android.app.Application
 import com.crashlytics.android.Crashlytics
 import io.fabric.sdk.android.Fabric
 import org.koin.android.ext.android.startKoin
+import rodolfoizidoro.meucontato.di.AppModule.LoginModule
+import rodolfoizidoro.meucontato.di.AppModule.MeetupModule
 import rodolfoizidoro.meucontato.di.AppModule.MeuContatoModules
 
 class MeuContatoApplication : Application() {
@@ -12,6 +14,6 @@ class MeuContatoApplication : Application() {
         super.onCreate()
 
         Fabric.with(this, Crashlytics())
-        startKoin(this, listOf(MeuContatoModules))
+        startKoin(this, listOf(MeuContatoModules, MeetupModule, LoginModule))
     }
 }

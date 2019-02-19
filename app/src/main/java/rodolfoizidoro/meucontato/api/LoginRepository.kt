@@ -1,14 +1,28 @@
 package rodolfoizidoro.meucontato.api
 
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
+import rodolfoizidoro.meucontato.api.FirebaseConstants.CHECKED
+import rodolfoizidoro.meucontato.api.FirebaseConstants.CONTACTS
+import rodolfoizidoro.meucontato.api.FirebaseConstants.DESCRIPTION
+import rodolfoizidoro.meucontato.api.FirebaseConstants.DISPLAY_NAME
+import rodolfoizidoro.meucontato.api.FirebaseConstants.EMAIL
+import rodolfoizidoro.meucontato.api.FirebaseConstants.ID
+import rodolfoizidoro.meucontato.api.FirebaseConstants.ID_SOCIAL
+import rodolfoizidoro.meucontato.api.FirebaseConstants.NAME
+import rodolfoizidoro.meucontato.api.FirebaseConstants.PHOTO
+import rodolfoizidoro.meucontato.api.FirebaseConstants.PROFILES
+import rodolfoizidoro.meucontato.api.FirebaseConstants.PROFILE_CONTACTS
+import rodolfoizidoro.meucontato.api.FirebaseConstants.TAG
+import rodolfoizidoro.meucontato.api.FirebaseConstants.TYPE
+import rodolfoizidoro.meucontato.api.FirebaseConstants.VALUE
 
 class LoginRepository(private val database: FirebaseFirestore, private val auth: FirebaseAuth) {
 
-    suspend fun registerDataForNewUser(name: String, email: String){
-        withContext(IO) {
+     fun registerDataForNewUser(name: String, email: String): Task<Void> {
             val uid = auth.uid.toString()
             val user: HashMap<String, Any> = HashMap()
             val profiles: HashMap<String, Any> = HashMap()
@@ -16,36 +30,34 @@ class LoginRepository(private val database: FirebaseFirestore, private val auth:
             val contactsProfile: HashMap<String, Any> = HashMap()
 
             //Create Contact
-            contact["id"] = database.collection("user").document(uid).collection("contacts").document().id
-            contact["tag"] = "gmail"
-            contact["type"] = "email"
-            contact["value"] = email
+            contact[ID] = database.collection("user").document(uid).collection("contacts").document().id
+            contact[TAG] = "gmail"
+            contact[TYPE] = "email"
+            contact[VALUE] = email
 
             //Create Link with Profiles
-            contactsProfile["id"] = database.collection("user").document(uid).collection("contacts").document().id
-            contactsProfile["checked"] = true
-            contactsProfile["id_social"] = contact["id"].toString()
+            contactsProfile[ID] = database.collection("user").document(uid).collection("contacts").document().id
+            contactsProfile[CHECKED] = true
+            contactsProfile[ID_SOCIAL] = contact["id"].toString()
 
             //Create user profile
-            profiles["id"] = database.collection("user").document(uid).collection("profiles").document().id
-            profiles["name"] = "Perfil 1"
-            profiles["display_name"] = name
-            profiles["photo"] = uid
-            profiles["description"] = "Perfil de contato de $name"
-            profiles["profile_contacts"] = arrayListOf(contactsProfile)
+            profiles[ID] = database.collection("user").document(uid).collection("profiles").document().id
+            profiles[NAME] = "Perfil 1"
+            profiles[DISPLAY_NAME] = name
+            profiles[PHOTO] = uid
+            profiles[DESCRIPTION] = "Perfil de contato de $name"
+            profiles[PROFILE_CONTACTS] = arrayListOf(contactsProfile)
 
             //Create User
-            user["id"] = uid
-            user["name"] = name
-            user["email"] = email
-            user["profiles"] = arrayListOf(profiles)
-            user["contacts"] = arrayListOf(contact)
+            user[ID] = uid
+            user[NAME] = name
+            user[EMAIL] = email
+            user[PROFILES] = arrayListOf(profiles)
+            user[CONTACTS] = arrayListOf(contact)
 
-            FirebaseFirestore.getInstance()
-                .collection("user").document(uid).set(user)
-                .addOnFailureListener { exception ->
-                    throw exception
-                }
+       return database
+                .collection("user")
+                .document(uid).set(user)
+
         }
-    }
 }
