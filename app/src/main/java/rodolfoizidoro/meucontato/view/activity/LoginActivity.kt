@@ -79,6 +79,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val isNewUser = task.result?.additionalUserInfo?.isNewUser ?: false
+                    registerDataForNewUser(name, email)
                     if (isNewUser) {
                         registerDataForNewUser(name, email)
                     }
