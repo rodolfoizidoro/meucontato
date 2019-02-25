@@ -72,9 +72,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
 
-    //Firebase Coroutines
-    implementation "com.github.brotoo25:firestore-coroutines:0.0.4"
-
     // Koin AndroidX Scope feature
     implementation "org.koin:koin-androidx-scope:$koinVersion"
 

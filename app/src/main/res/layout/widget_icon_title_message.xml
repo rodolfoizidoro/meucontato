@@ -1,45 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/widget_itm_root"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:minHeight="48dp"
-    android:orientation="vertical"
-    android:paddingBottom="8dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="8dp">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/widget_itm_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minHeight="48dp"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp">
 
     <ImageView
-        android:id="@+id/ivITMIcon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:tint="@color/colorPrimary"/>
+            android:id="@+id/ivITMIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            tools:background="@drawable/ic_meetup"
+            android:layout_marginRight="10dp"
+            android:tint="@color/colorPrimary"/>
 
     <TextView
-        android:id="@+id/tvITMTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_toRightOf="@+id/ivITMIcon"
-        android:textColor="@color/black"
-        android:maxLines="2"
-        android:textSize="18sp"
-        tools:ignore="MissingPrefix"
-        tools:text="rodolfoizidoro@gmail.com" />
+            android:id="@+id/tvITMTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_toRightOf="@+id/ivITMIcon"
+            tools:text="rodolfoizidoro@gmail.com"
+            android:textColor="@color/black"
+            android:maxLines="2"
+            android:textSize="18sp"/>
 
     <TextView
-        android:id="@+id/tvITMMessage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvITMTitle"
-        android:layout_toRightOf="@+id/ivITMIcon"
-        android:textColor="@color/darkGray"
-        android:textSize="16sp"
-        tools:ignore="MissingPrefix"
-        tools:text="rodolfoizidoro@gmail.com" />
+            android:id="@+id/tvITMMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvITMTitle"
+            android:layout_toRightOf="@+id/ivITMIcon"
+            android:textColor="@color/darkGray"
+            android:textSize="16sp"
+            tools:text="rodolfoizidoro@gmail.com"/>
 </RelativeLayout>
