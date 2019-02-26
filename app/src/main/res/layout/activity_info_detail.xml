@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarInfoDetail"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            app:navigationIcon="@drawable/ic_arrow_back_white"
+            app:titleTextColor="@color/white"
+            android:layout_height="wrap_content"/>
+
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+        <LinearLayout
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                    android:background="@color/darkGrayA20"
+                    android:id="@+id/spnInfoType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:id="@+id/ilInfoTag"
+                    android:hint="@string/info_detail_tag"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ietInfoTag"
+                        android:layout_width="match_parent"
+                        android:inputType="text"
+                        android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:id="@+id/ilInfoValue"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/info_detail_contact"
+                    android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ietInfoValue"
+                        android:layout_width="match_parent"
+                        android:inputType="textMultiLine"
+                        android:maxLines="2"
+                        android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnInfolDelete"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:text="@string/delete"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:layout_width="0dp"/>
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnInfoSave"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:text="@string/save"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

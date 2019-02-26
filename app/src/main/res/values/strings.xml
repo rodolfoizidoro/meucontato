@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Meu Contato</string>
     <string name="google_maps_key">AIzaSyC0ffbXn1PR63WgPBN16gWJ4B8Q7CUBTU0</string>
+    <string name="save">Salvar</string>
+    <string name="delete">Excluir</string>
 
     <!--Login-->
     <string name="login_activity_title">Sign in</string>
@@ -25,5 +27,9 @@
 
     <!--Share-->
     <string name="share_title">Compartilhar Contato</string>
+
+    <!--Info Detail-->
+    <string name="info_detail_tag">Tag</string>
+    <string name="info_detail_contact">Contato</string>
 
 </resources>

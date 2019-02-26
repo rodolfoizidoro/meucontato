@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.info_fragment.*
+import org.jetbrains.anko.startActivity
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import rodolfoizidoro.meucontato.R
 import rodolfoizidoro.meucontato.adapter.InfoAdapter
+import rodolfoizidoro.meucontato.view.activity.InfoDetailActivity
 import rodolfoizidoro.meucontato.viewmodel.InfoViewModel
 
 class InfoFragment : Fragment() {
@@ -41,7 +43,7 @@ class InfoFragment : Fragment() {
     private fun observerContacts() {
         viewModel.contacts().observe(this, Observer { list ->
             rvInfo.adapter = InfoAdapter(list) { contact ->
-
+                context?.startActivity<InfoDetailActivity>()
             }
         })
 

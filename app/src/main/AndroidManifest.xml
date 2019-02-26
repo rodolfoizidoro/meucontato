@@ -16,16 +16,15 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-
         <meta-data
                 android:name="io.fabric.ApiKey"
                 android:value="e6e179190b1902227d6bf6f81bd409291a11566a"/>
         <meta-data
                 android:name="com.google.android.gms.version"
-                android:value="@integer/google_play_services_version" />
+                android:value="@integer/google_play_services_version"/>
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
-                android:value="@string/google_maps_key" />
+                android:value="@string/google_maps_key"/>
 
         <activity
                 android:name=".view.activity.MainActivity"
@@ -40,29 +39,40 @@
             </intent-filter>
         </activity>
 
-        <!--<activity-->
-        <!--android:name=".view.activity.LoginActivity"-->
-        <!--android:label="@string/app_name"-->
-        <!--android:theme="@style/AppTheme"-->
-        <!--android:windowSoftInputMode="adjustNothing">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.MAIN"/>-->
-        <!--<action android:name="android.intent.action.VIEW"/>-->
+        <!-- <activity -->
+        <!-- android:name=".view.activity.LoginActivity" -->
+        <!-- android:label="@string/app_name" -->
+        <!-- android:theme="@style/AppTheme" -->
+        <!-- android:windowSoftInputMode="adjustNothing"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN"/> -->
+        <!-- <action android:name="android.intent.action.VIEW"/> -->
 
-        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-        <!--</intent-filter>-->
-        <!--</activity>-->
 
-        <!--<activity android:name=".view.activity.FilterCityActivity">-->
-        <!--</activity>-->
+        <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
 
-        <activity android:name=".view.activity.LoginActivity">
-        </activity>
 
+         <activity
+                 android:theme="@style/AppTheme"
+                 android:name=".view.activity.FilterCityActivity">
+         </activity>
 
         <activity
+                android:theme="@style/AppTheme"
+                android:name=".view.activity.LoginActivity">
+        </activity>
+        <activity
+                android:theme="@style/AppTheme"
                 android:name=".view.activity.MeetupDetailActivity"
                 android:launchMode="singleTop">
+        </activity>
+        <activity
+                android:theme="@style/AppTheme"
+                android:label="Informações"
+                android:parentActivityName=".view.activity.MainActivity"
+                android:name=".view.activity.InfoDetailActivity">
         </activity>
     </application>
 
