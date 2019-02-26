@@ -15,6 +15,7 @@ class InfoDetailViewModel(private val repository: InfoDetailRepository, var cont
 
     private val saveSuccess = MutableLiveData<Unit>()
     private val saveError = MutableLiveData<Exception>()
+    private val dropDown = MutableLiveData<List<String>>()
 
     val tag = LiveField(key = FirebaseConstants.TAG, validators = listOf(RequiredValidator("Campo tag requerido")))
     val value = LiveField(key = FirebaseConstants.VALUE, validators = listOf(RequiredValidator("Campo contato requerido")))
@@ -23,8 +24,11 @@ class InfoDetailViewModel(private val repository: InfoDetailRepository, var cont
         .addField(value)
         .build()
 
+    val spinner = listOf("Email", "Telefone", "Instagram")
+
     fun saveSucess() = saveSuccess as LiveData<Unit>
     fun saveError() = saveError as LiveData<Exception>
+    fun dropDown() = dropDown as LiveData<List<String>>
 
     fun saveInfo() {
         jobs add launch {
@@ -34,5 +38,9 @@ class InfoDetailViewModel(private val repository: InfoDetailRepository, var cont
                 saveError.value = e
             }
         }
+    }
+
+    fun loadDropDown() {
+       dropDown.postValue(spinner)
     }
 }

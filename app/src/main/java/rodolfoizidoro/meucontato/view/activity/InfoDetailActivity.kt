@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_info_detail.*
-import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -30,10 +29,12 @@ class InfoDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
         binding.setLifecycleOwner(this)
+        viewModel.loadDropDown()
 
         setupToolbar()
         btnInfoSave.setOnClickListener { save() }
         observerSave()
+        observerTypes()
     }
 
     private fun setupToolbar() {
@@ -45,11 +46,21 @@ class InfoDetailActivity : AppCompatActivity() {
         viewModel.saveSucess().observe(this, Observer {
             setResult(Activity.RESULT_OK)
             toast("Sucesso")
+            finish()
         })
 
         viewModel.saveError().observe(this, Observer {
             setResult(Activity.RESULT_CANCELED)
-           toast(it.localizedMessage)
+            toast(it.localizedMessage)
+        })
+    }
+
+    private fun observerTypes() {
+        viewModel.dropDown().observe(this, Observer {
+            binding.spnInfoType.setItems(it)
+            binding.spnInfoType.setOnItemSelectedListener { view, position, id, item ->
+                viewModel.contact.type = item as String
+            }
         })
     }
 
