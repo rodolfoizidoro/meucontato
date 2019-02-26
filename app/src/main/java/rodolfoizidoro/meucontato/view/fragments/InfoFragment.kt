@@ -43,7 +43,7 @@ class InfoFragment : Fragment() {
     private fun observerContacts() {
         viewModel.contacts().observe(this, Observer { list ->
             rvInfo.adapter = InfoAdapter(list) { contact ->
-                context?.startActivity<InfoDetailActivity>()
+                context?.startActivity<InfoDetailActivity>(InfoDetailActivity.EXTRA_CONTACT to contact)
             }
         })
 

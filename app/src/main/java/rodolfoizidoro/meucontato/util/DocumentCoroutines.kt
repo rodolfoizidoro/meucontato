@@ -83,26 +83,17 @@ suspend fun <T : Any> DocumentReference.await(parser: (documentSnapshot: Documen
 //    }
 //}
 //
-//suspend fun DocumentReference.updateAwait(var1: Map<String, Any>) {
-//    return suspendCancellableCoroutine { continuation ->
-//        update(var1).addOnCompleteListener {
-//            if (it.isSuccessful) {
-//                continuation.resume(Unit)
-//            } else {
-//                continuation.resumeWithException(it.exception!!)
-//            }
-//        }
-//
-//        continuation.invokeOnCancellation {
-//            if (continuation.isCancelled)
-//                try {
-//                    NonCancellable.cancel()
-//                } catch (ex: Throwable) {
-//                    //Ignore cancel exception
-//                }
-//        }
-//    }
-//}
+suspend fun DocumentReference.updateAwait(var1: Map<String, Any>) {
+    return suspendCancellableCoroutine { continuation ->
+        update(var1).addOnCompleteListener {
+            if (it.isSuccessful) {
+                continuation.resume(Unit)
+            } else {
+                continuation.resumeWithException(it.exception!!)
+            }
+        }
+    }
+}
 //
 //suspend fun DocumentReference.updateAwait(var1: FieldPath, var2: Any, var3: List<Any>) {
 //    return suspendCancellableCoroutine { continuation ->

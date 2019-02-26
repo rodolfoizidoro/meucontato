@@ -9,14 +9,24 @@ import kotlinx.coroutines.withContext
 import rodolfoizidoro.meucontato.api.FirebaseConstants.CONTACTS
 import rodolfoizidoro.meucontato.api.FirebaseConstants.USER
 import rodolfoizidoro.meucontato.model.core.Contact
-import rodolfoizidoro.meucontato.util.await
+import rodolfoizidoro.meucontato.util.updateAwait
 
 class InfoDetailRepository(private val database: FirebaseFirestore, private val auth: FirebaseAuth) {
 
-    suspend fun loadInfo(): Deferred<List<Contact>> {
+    suspend fun saveInfo(contact: Contact): Deferred<Unit> {
+        val map: HashMap<String, Any> = HashMap()
+        map[FirebaseConstants.TYPE] = contact.type
+        map[FirebaseConstants.TAG] = contact.tag
+        map[FirebaseConstants.VALUE] = contact.value
+
         return withContext(IO) {
             async {
-                database.collection(USER).document(auth.uid.toString()).collection(CONTACTS).await(Contact::class.java)
+                database
+                    .collection(USER)
+                    .document(auth.uid.toString())
+                    .collection(CONTACTS)
+                    .document(contact.id).updateAwait(map)
+
             }
         }
     }

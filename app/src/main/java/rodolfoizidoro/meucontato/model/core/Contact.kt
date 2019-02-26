@@ -1,3 +1,5 @@
 package rodolfoizidoro.meucontato.model.core
 
-data class Contact(val id: String = "", val tag: String= "", val type: String = "", val value: String = "")
+import java.io.Serializable
+
+data class Contact(var id: String = "", var tag: String= "", var type: String = "", var value: String = "") : Serializable

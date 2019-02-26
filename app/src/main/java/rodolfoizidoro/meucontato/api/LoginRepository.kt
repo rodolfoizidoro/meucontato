@@ -4,8 +4,6 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.withContext
 import rodolfoizidoro.meucontato.api.FirebaseConstants.CHECKED
 import rodolfoizidoro.meucontato.api.FirebaseConstants.CONTACTS
 import rodolfoizidoro.meucontato.api.FirebaseConstants.DESCRIPTION
@@ -19,6 +17,7 @@ import rodolfoizidoro.meucontato.api.FirebaseConstants.PROFILES
 import rodolfoizidoro.meucontato.api.FirebaseConstants.PROFILE_CONTACTS
 import rodolfoizidoro.meucontato.api.FirebaseConstants.TAG
 import rodolfoizidoro.meucontato.api.FirebaseConstants.TYPE
+import rodolfoizidoro.meucontato.api.FirebaseConstants.USER
 import rodolfoizidoro.meucontato.api.FirebaseConstants.VALUE
 
 class LoginRepository(private val database: FirebaseFirestore, private val auth: FirebaseAuth) {
@@ -30,19 +29,23 @@ class LoginRepository(private val database: FirebaseFirestore, private val auth:
         val contact: HashMap<String, Any> = HashMap()
         val contactsProfile: HashMap<String, Any> = HashMap()
 
+        val ref: DocumentReference = database
+            .collection(USER)
+            .document(uid)
+
         //Create Contact
-        contact[ID] = database.collection("user").document(uid).collection("contacts").document().id
+        contact[ID] = ref.collection(CONTACTS).document().id
         contact[TAG] = "gmail"
         contact[TYPE] = "email"
         contact[VALUE] = email
 
         //Create Link with Profiles
-        contactsProfile[ID] = database.collection("user").document(uid).collection("contacts").document().id
+        contactsProfile[ID] = ref.collection(CONTACTS).document().id
         contactsProfile[CHECKED] = true
         contactsProfile[ID_SOCIAL] = contact["id"].toString()
 
         //Create user profile
-        profiles[ID] = database.collection("user").document(uid).collection("profiles").document().id
+        profiles[ID] = ref.collection(PROFILES).document().id
         profiles[NAME] = "Perfil 1"
         profiles[DISPLAY_NAME] = name
         profiles[PHOTO] = uid
@@ -53,15 +56,9 @@ class LoginRepository(private val database: FirebaseFirestore, private val auth:
         user[ID] = uid
         user[NAME] = name
         user[EMAIL] = email
-//        user[PROFILES] = arrayListOf(profiles)
-//        user[CONTACTS] = arrayListOf(contact)
 
         // Get a new write batch
         val batch = database.batch()
-
-        val ref: DocumentReference = database
-            .collection("user")
-            .document(uid)
 
         batch.set(ref, user)
         batch.set(ref.collection(PROFILES).document(profiles[ID].toString()), profiles)

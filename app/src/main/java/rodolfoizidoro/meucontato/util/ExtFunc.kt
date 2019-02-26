@@ -10,6 +10,8 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import java.util.*
+import java.util.stream.Collectors
 
 fun AppCompatActivity.addFragment(frameId: Int, fragment: Fragment, tag: String) {
     supportFragmentManager.inTransaction { add(frameId, fragment, tag) }
@@ -19,7 +21,7 @@ fun AppCompatActivity.addFragment(frameId: Int, fragment: Fragment, tag: String)
 fun AppCompatActivity.replaceFragment(frameId: Int, fragment: Fragment, tag: String) {
     Handler().postDelayed({
         supportFragmentManager.inTransaction { replace(frameId, fragment, tag) }
-    }, 100)
+    }, 120)
 }
 
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
@@ -29,4 +31,3 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Fragmen
 fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
 }
-

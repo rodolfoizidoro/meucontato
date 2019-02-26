@@ -76,6 +76,6 @@ object AppModule {
         single { InfoRepository(get(), get()) }
         single { InfoDetailRepository(get(), get()) }
         viewModel { InfoViewModel(get()) }
-        viewModel { (info : Contact?) -> InfoDetailViewModel(get(), info)}
+        viewModel { (info : Contact) -> InfoDetailViewModel(get(), info)}
     }
 }
