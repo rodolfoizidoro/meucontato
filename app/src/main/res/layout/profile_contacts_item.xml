@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+                name="contact"
+                type="rodolfoizidoro.meucontato.model.core.Contact"/>
+    </data>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <CheckBox
+                android:id="@+id/checkProfileContact"
+                android:layout_alignParentStart="true"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:checked="@={contact.checked}"
+                tools:checked="true"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/tvProfileContactTag"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@id/checkProfileContact"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:textSize="18sp"
+                android:text="@{contact.tag}"
+                tools:text="www.facebook.com"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/tvProfileContactInfo"
+                android:layout_below="@id/tvProfileContactTag"
+                android:layout_alignStart="@id/tvProfileContactTag"
+                android:layout_marginTop="4dp"
+                android:layout_alignEnd="@id/tvProfileContactTag"
+                android:layout_width="match_parent"
+                android:maxLines="3"
+                android:text="@{contact.value}"
+                android:textSize="14sp"
+                tools:text="www.facebook.com"
+                android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+</layout>

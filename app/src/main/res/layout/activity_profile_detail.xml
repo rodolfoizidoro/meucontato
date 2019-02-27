@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="viewModel" type="rodolfoizidoro.meucontato.viewmodel.ProfileDetailViewModel"/>
     </data>
@@ -31,6 +32,7 @@
                             android:id="@+id/ietProfileName"
                             android:layout_width="match_parent"
                             android:inputType="text"
+                            android:text="@={viewModel.loadSucess().name}"
                             android:layout_height="wrap_content"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,6 +47,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ietProfilDisplayName"
                             android:layout_width="match_parent"
+                            android:text="@={viewModel.loadSucess().displayName}"
                             android:inputType="text"
                             android:layout_height="wrap_content"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -60,6 +63,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ietProfileDescription"
                             android:layout_width="match_parent"
+                            android:text="@={viewModel.loadSucess().description}"
                             android:inputType="text"
                             android:layout_height="wrap_content"/>
                 </com.google.android.material.textfield.TextInputLayout>

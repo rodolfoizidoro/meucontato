@@ -48,11 +48,11 @@ data class MeetupEvent
         return sdfDate.format(now)
     }
 
-    fun venueName(): String = venue!!.name ?: "Não informado"
+    fun venueName(): String = venue?.name ?: "Não informado"
 
-    fun venueAddress(): String = venue!!.address1 ?: "Acesse mais informações para obter o local."
+    fun venueAddress(): String = venue?.address1 ?: "Acesse mais informações para obter o local."
 
-    fun locationCoord(): LatLng = if (hasLocationMap()) LatLng(venue!!.lat!!, venue!!.lon!!) else LatLng(0.0, 0.0)
+    fun locationCoord(): LatLng = if (hasLocationMap()) LatLng(venue?.lat!!, venue?.lon!!) else LatLng(0.0, 0.0)
 
     private fun durationTime(): Long {
         return duration ?: 0L

@@ -7,6 +7,7 @@ import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.suspendCancellableCoroutine
+import java.lang.Exception
 import java.util.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -19,12 +20,14 @@ suspend fun <T : Any> DocumentReference.await(parser: (documentSnapshot: Documen
     return suspendCancellableCoroutine { continuation ->
         get().addOnCompleteListener {
 
-            if (it.isSuccessful && it.result != null) {
-                continuation.resume(parser.invoke(it.result!!))
-            } else if (it.exception != null){
-                continuation.resumeWithException(it.exception!!)
-            } else {
-                continuation.resumeWithException(EmptyStackException())
+            try {
+                if (it.isSuccessful && it.result != null) {
+                    continuation.resume(parser.invoke(it.result!!))
+                } else {
+                    continuation.resumeWithException(it.exception!!)
+                }
+            } catch (e : Exception) {
+                continuation.resumeWithException(e)
             }
         }
 

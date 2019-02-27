@@ -1,37 +1,41 @@
 package rodolfoizidoro.meucontato.view.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import org.jetbrains.anko.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import rodolfoizidoro.meucontato.R
-import rodolfoizidoro.meucontato.model.core.Profile
+import rodolfoizidoro.meucontato.databinding.ActivityProfileDetailBinding
 import rodolfoizidoro.meucontato.viewmodel.ProfileDetailViewModel
 
 class ProfileDetailActivity : AppCompatActivity() {
 
     companion object {
-        const val EXTRA_PROFILE = "extra_profile"
+        const val EXTRA_PROFILE_ID = "extra_profile_id"
     }
 
     private val viewModel by viewModel<ProfileDetailViewModel>()
+    private val binding by lazy {
+        DataBindingUtil.setContentView<ActivityProfileDetailBinding>(this, R.layout.activity_profile_detail)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_detail)
+        binding.viewModel = viewModel
+        binding.setLifecycleOwner(this)
 
-        viewModel.loadInfo("91ekUVioyC0TPIP3XAb9")
-        observerSave()
+        viewModel.loadInfo(getExtraProfileId())
+        observerLoad()
     }
 
-    private fun getExtraProfile(): Profile {
-        return intent.getSerializableExtra(EXTRA_PROFILE) as Profile
+    private fun getExtraProfileId(): String {
+        return intent.getStringExtra(EXTRA_PROFILE_ID)
     }
 
-    private fun observerSave() {
+    private fun observerLoad() {
         viewModel.loadSucess().observe(this, Observer {
-            val a = it
         })
 
         viewModel.loadError().observe(this, Observer {

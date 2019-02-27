@@ -45,7 +45,7 @@ class ProfilesFragment : Fragment() {
     private fun observerContacts() {
         viewModel.profiles().observe(this, Observer { list ->
             rvProfiles.adapter = ProfileAdapter(list) { profile ->
-                startActivityForResult<ProfileDetailActivity>(1, ProfileDetailActivity.EXTRA_PROFILE to profile)
+                startActivityForResult<ProfileDetailActivity>(1, ProfileDetailActivity.EXTRA_PROFILE_ID to profile.id)
             }
         })
 
