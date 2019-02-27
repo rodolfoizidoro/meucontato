@@ -17,6 +17,7 @@ import rodolfoizidoro.meucontato.BuildConfig
 import rodolfoizidoro.meucontato.api.*
 import rodolfoizidoro.meucontato.common.SharedPrefController
 import rodolfoizidoro.meucontato.model.core.Contact
+import rodolfoizidoro.meucontato.model.core.Profile
 import rodolfoizidoro.meucontato.viewmodel.*
 import java.util.concurrent.TimeUnit
 
@@ -74,13 +75,15 @@ object AppModule {
 
     val ProfileModule = module {
         single { ProfilesRepository(get(), get()) }
+        single { ProfileDetailRepository(get(), get()) }
         viewModel { ProfilesViewModel(get()) }
+        viewModel { ProfileDetailViewModel(get()) }
     }
 
     val InfoModule = module {
         single { InfoRepository(get(), get()) }
         single { InfoDetailRepository(get(), get()) }
         viewModel { InfoViewModel(get()) }
-        viewModel { (info : Contact) -> InfoDetailViewModel(get(), info)}
+        viewModel { (info: Contact) -> InfoDetailViewModel(get(), info) }
     }
 }

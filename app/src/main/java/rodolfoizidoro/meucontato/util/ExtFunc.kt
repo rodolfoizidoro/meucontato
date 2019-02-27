@@ -4,14 +4,10 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import java.util.*
-import java.util.stream.Collectors
 
 fun AppCompatActivity.addFragment(frameId: Int, fragment: Fragment, tag: String) {
     supportFragmentManager.inTransaction { add(frameId, fragment, tag) }
@@ -31,3 +27,6 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Fragmen
 fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
 }
+
+
+

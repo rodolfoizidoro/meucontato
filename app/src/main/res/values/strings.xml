@@ -3,6 +3,7 @@
     <string name="google_maps_key">AIzaSyC0ffbXn1PR63WgPBN16gWJ4B8Q7CUBTU0</string>
     <string name="save">Salvar</string>
     <string name="delete">Excluir</string>
+    <string name="description">Descrição</string>
 
     <!--Login-->
     <string name="login_activity_title">Sign in</string>
@@ -31,5 +32,7 @@
     <!--Info Detail-->
     <string name="info_detail_tag">Tag</string>
     <string name="info_detail_contact">Contato</string>
+    <string name="profile_detail_name">Nome do Perfil</string>
+    <string name="profile_detail_display_name">Nome de exibição</string>
 
 </resources>

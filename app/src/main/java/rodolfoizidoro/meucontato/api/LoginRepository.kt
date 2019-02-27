@@ -50,7 +50,6 @@ class LoginRepository(private val database: FirebaseFirestore, private val auth:
         profiles[DISPLAY_NAME] = name
         profiles[PHOTO] = uid
         profiles[DESCRIPTION] = "Perfil de contato de $name"
-        profiles[PROFILE_CONTACTS] = arrayListOf(contactsProfile)
 
         //Create User
         user[ID] = uid
@@ -61,8 +60,12 @@ class LoginRepository(private val database: FirebaseFirestore, private val auth:
         val batch = database.batch()
 
         batch.set(ref, user)
-        batch.set(ref.collection(PROFILES).document(profiles[ID].toString()), profiles)
         batch.set(ref.collection(CONTACTS).document(contact[ID].toString()), contact)
+
+        contact[CHECKED] = true
+        batch.set(ref.collection(PROFILES).document(profiles[ID].toString()), profiles)
+        batch.set(ref.collection(PROFILES).document(profiles[ID].toString()).collection(CONTACTS)
+            .document(contact[ID].toString()), contact)
 
         return batch.commit()
     }

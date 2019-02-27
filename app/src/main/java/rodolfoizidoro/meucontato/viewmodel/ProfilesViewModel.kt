@@ -2,6 +2,8 @@ package rodolfoizidoro.meucontato.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import rodolfoizidoro.meucontato.api.ProfilesRepository
 import rodolfoizidoro.meucontato.common.CoroutineViewModel
@@ -20,7 +22,6 @@ class ProfilesViewModel(private val repository: ProfilesRepository) : CoroutineV
         jobs add launch {
             try {
                 profiles.value = repository.loadInfo().await()
-
             } catch (e: Exception) {
                 error.value = e
             }

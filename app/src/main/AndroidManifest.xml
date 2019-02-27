@@ -53,26 +53,27 @@
         <!-- </intent-filter> -->
         <!-- </activity> -->
 
-
-         <activity
-                 android:theme="@style/AppTheme"
-                 android:name=".view.activity.FilterCityActivity">
-         </activity>
-
         <activity
-                android:theme="@style/AppTheme"
-                android:name=".view.activity.LoginActivity">
+                android:name=".view.activity.FilterCityActivity"
+                android:theme="@style/AppTheme">
         </activity>
         <activity
-                android:theme="@style/AppTheme"
+                android:name=".view.activity.LoginActivity"
+                android:theme="@style/AppTheme">
+        </activity>
+        <activity
                 android:name=".view.activity.MeetupDetailActivity"
-                android:launchMode="singleTop">
+                android:launchMode="singleTop"
+                android:theme="@style/AppTheme">
         </activity>
         <activity
-                android:theme="@style/AppTheme"
+                android:name=".view.activity.InfoDetailActivity"
                 android:label="Informações"
                 android:parentActivityName=".view.activity.MainActivity"
-                android:name=".view.activity.InfoDetailActivity">
+                android:theme="@style/AppTheme">
+        </activity>
+        <activity android:name=".view.activity.ProfileDetailActivity"
+                  android:theme="@style/AppTheme">
         </activity>
     </application>
 
