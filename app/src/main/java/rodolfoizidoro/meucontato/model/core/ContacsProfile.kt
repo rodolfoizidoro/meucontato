@@ -1,3 +1,10 @@
 package rodolfoizidoro.meucontato.model.core
 
-data class ContacsProfile(val id : String, val  checked : Boolean, val idSocial : String)
+import com.google.firebase.firestore.PropertyName
+
+data class ContacsProfile(
+    val id: String = "",
+    val checked: Boolean = false,
+    @set:PropertyName("id_social")
+    @get:PropertyName("id_social")
+    var idSocial: String = "")

@@ -26,15 +26,6 @@ suspend fun <T : Any> CollectionReference.await(parser: (documentSnapshot: Docum
                 continuation.resumeWithException(EmptyStackException())
             }
         }
-
-        continuation.invokeOnCancellation {
-            if (continuation.isCancelled)
-                try {
-                    //NonCancellable.cancel()
-                } catch (ex: Throwable) {
-                    //Ignore cancel exception
-                }
-        }
     }
 }
 //

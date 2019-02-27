@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.info_fragment.*
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -38,7 +36,6 @@ class InfoFragment : Fragment() {
         setupRecyclerView()
         observerContacts()
         viewModel.loadInfos()
-
     }
 
     private fun setupRecyclerView() {

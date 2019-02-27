@@ -72,6 +72,11 @@ object AppModule {
         viewModel { LoginViewModel(get()) }
     }
 
+    val ProfileModule = module {
+        single { ProfilesRepository(get(), get()) }
+        viewModel { ProfilesViewModel(get()) }
+    }
+
     val InfoModule = module {
         single { InfoRepository(get(), get()) }
         single { InfoDetailRepository(get(), get()) }

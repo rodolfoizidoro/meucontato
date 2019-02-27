@@ -8,6 +8,7 @@ import rodolfoizidoro.meucontato.di.AppModule.InfoModule
 import rodolfoizidoro.meucontato.di.AppModule.LoginModule
 import rodolfoizidoro.meucontato.di.AppModule.MeetupModule
 import rodolfoizidoro.meucontato.di.AppModule.MeuContatoModules
+import rodolfoizidoro.meucontato.di.AppModule.ProfileModule
 
 class MeuContatoApplication : Application() {
 
@@ -15,6 +16,6 @@ class MeuContatoApplication : Application() {
         super.onCreate()
 
         Fabric.with(this, Crashlytics())
-        startKoin(this, listOf(MeuContatoModules, MeetupModule, LoginModule, InfoModule))
+        startKoin(this, listOf(MeuContatoModules, MeetupModule, LoginModule, InfoModule, ProfileModule))
     }
 }
