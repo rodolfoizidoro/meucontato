@@ -14,6 +14,7 @@ object FirebaseConstants {
     const val PROFILE_CONTACTS = "profile_contacts"
     const val EMAIL = "email"
     const val PROFILES = "profiles"
+    const val SHARE = "share"
     const val CONTACTS = "contacts"
     const val USER = "user"
 }

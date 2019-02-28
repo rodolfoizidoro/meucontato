@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
+import androidx.lifecycle.Observer
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.share_fragment.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -34,17 +33,33 @@ class ShareFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadProfiles()
+        observerShare()
+        observerSaveSuccess()
         ivShareReceiveQr.setOnClickListener { openScanner() }
-        ivShareSendQr.setOnClickListener { openShareQrCode("djashdaskda") }
+        ivShareSendQr.setOnClickListener { viewModel.shareProfile(0) }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        viewModel.saveContact(result.contents)
+        toast(result.contents)
+    }
+
+    private fun observerShare() {
+        viewModel.shareId().observe(this, Observer {
+            openShareQrCode(it)
+        })
+    }
+
+    private fun observerSaveSuccess() {
+        viewModel.saveSuccess().observe(this, Observer {
+            toast("Sucesso")
+        })
     }
 
     private fun openShareQrCode(info: String) {
         startActivity<QrCodeActivity>(QrCodeActivity.EXTRA_INFO to info)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-        toast(result.contents)
     }
 
     private fun openScanner() {
