@@ -14,7 +14,7 @@ import rodolfoizidoro.meucontato.model.core.Contact
 import rodolfoizidoro.meucontato.model.core.Profile
 import rodolfoizidoro.meucontato.util.await
 
-class ProfilesRepository(private val database: FirebaseFirestore, private val auth: FirebaseAuth) {
+class ContactsRepository(private val database: FirebaseFirestore, private val auth: FirebaseAuth) {
 
     suspend fun loadInfo(): Deferred<List<Profile>> {
         return withContext(IO) {

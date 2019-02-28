@@ -2,13 +2,10 @@ package rodolfoizidoro.meucontato.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import rodolfoizidoro.meucontato.api.ProfilesRepository
 import rodolfoizidoro.meucontato.common.CoroutineViewModel
 import rodolfoizidoro.meucontato.model.core.Profile
-import java.lang.Exception
 
 class ProfilesViewModel(private val repository: ProfilesRepository) : CoroutineViewModel() {
 

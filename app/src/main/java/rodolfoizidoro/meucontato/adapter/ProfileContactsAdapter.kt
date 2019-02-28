@@ -5,13 +5,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import rodolfoizidoro.meucontato.R
-import rodolfoizidoro.meucontato.databinding.InfoItemBinding
-import rodolfoizidoro.meucontato.databinding.MeetupItemBinding
 import rodolfoizidoro.meucontato.databinding.ProfileContactsItemBinding
-import rodolfoizidoro.meucontato.databinding.ProfileItemBinding
-import rodolfoizidoro.meucontato.model.MeetupEvent
 import rodolfoizidoro.meucontato.model.core.Contact
-import rodolfoizidoro.meucontato.model.core.Profile
 import rodolfoizidoro.meucontato.util.inflate
 
 class ProfileContactsAdapter(

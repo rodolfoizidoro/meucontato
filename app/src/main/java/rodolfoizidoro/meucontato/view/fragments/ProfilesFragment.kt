@@ -59,5 +59,4 @@ class ProfilesFragment : Fragment() {
             viewModel.loadProfiles()
         }
     }
-
 }

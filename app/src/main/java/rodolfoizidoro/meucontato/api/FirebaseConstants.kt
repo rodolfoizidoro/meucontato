@@ -11,7 +11,6 @@ object FirebaseConstants {
     const val DISPLAY_NAME = "display_name"
     const val PHOTO = "photo"
     const val DESCRIPTION = "description"
-    const val PROFILE_CONTACTS = "profile_contacts"
     const val EMAIL = "email"
     const val PROFILES = "profiles"
     const val SHARE = "share"

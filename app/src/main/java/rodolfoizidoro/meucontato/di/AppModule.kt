@@ -23,22 +23,6 @@ import java.util.concurrent.TimeUnit
 
 object AppModule {
     const val CONNECTION_TIMEOUT = 60000L
-
-    private fun provideOkHttpClient(): OkHttpClient {
-        val client = OkHttpClient.Builder()
-            .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
-            .readTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
-            .writeTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
-
-        if (BuildConfig.DEBUG) {
-            val logging = HttpLoggingInterceptor()
-            logging.level = HttpLoggingInterceptor.Level.BODY
-            client.addInterceptor(logging)
-        }
-
-        return client.build()
-    }
-
     val MeuContatoModules = module {
         single { FirebaseFirestore.getInstance() }
         single { FirebaseAuth.getInstance() }
@@ -78,6 +62,11 @@ object AppModule {
         viewModel { ShareViewModel(get()) }
     }
 
+    val ContactsModule = module {
+        single { ContactsRepository(get(), get()) }
+        viewModel { ContactsViewModel(get()) }
+    }
+
     val ProfileModule = module {
         single { ProfilesRepository(get(), get()) }
         single { ProfileDetailRepository(get(), get()) }
@@ -90,5 +79,20 @@ object AppModule {
         single { InfoDetailRepository(get(), get()) }
         viewModel { InfoViewModel(get()) }
         viewModel { (info: Contact) -> InfoDetailViewModel(get(), info) }
+    }
+
+    private fun provideOkHttpClient(): OkHttpClient {
+        val client = OkHttpClient.Builder()
+            .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
+            .readTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
+            .writeTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
+
+        if (BuildConfig.DEBUG) {
+            val logging = HttpLoggingInterceptor()
+            logging.level = HttpLoggingInterceptor.Level.BODY
+            client.addInterceptor(logging)
+        }
+
+        return client.build()
     }
 }

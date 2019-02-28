@@ -47,7 +47,7 @@ class ProfileDetailActivity : BaseActivity() {
         })
 
         viewModel.loadError().observe(this, Observer {
-            toast(it.localizedMessage)
+            toast(it.message + "")
         })
     }
 

@@ -14,7 +14,6 @@ import rodolfoizidoro.meucontato.api.FirebaseConstants.ID_SOCIAL
 import rodolfoizidoro.meucontato.api.FirebaseConstants.NAME
 import rodolfoizidoro.meucontato.api.FirebaseConstants.PHOTO
 import rodolfoizidoro.meucontato.api.FirebaseConstants.PROFILES
-import rodolfoizidoro.meucontato.api.FirebaseConstants.PROFILE_CONTACTS
 import rodolfoizidoro.meucontato.api.FirebaseConstants.TAG
 import rodolfoizidoro.meucontato.api.FirebaseConstants.TYPE
 import rodolfoizidoro.meucontato.api.FirebaseConstants.USER
