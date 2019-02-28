@@ -12,13 +12,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarInfoDetail"
-                android:background="@color/colorPrimary"
-                android:layout_width="match_parent"
-                app:navigationIcon="@drawable/ic_arrow_back_white"
-                app:titleTextColor="@color/white"
-                android:layout_height="wrap_content"/>
+        <include layout="@layout/primary_toolbar"/>
 
         <ScrollView android:layout_width="match_parent"
                     android:layout_height="wrap_content">

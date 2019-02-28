@@ -14,7 +14,7 @@ import rodolfoizidoro.meucontato.databinding.ActivityInfoDetailBinding
 import rodolfoizidoro.meucontato.model.core.Contact
 import rodolfoizidoro.meucontato.viewmodel.InfoDetailViewModel
 
-class InfoDetailActivity : AppCompatActivity() {
+class InfoDetailActivity : BaseActivity() {
 
     companion object {
         const val EXTRA_CONTACT = "extra_contact"
@@ -31,15 +31,10 @@ class InfoDetailActivity : AppCompatActivity() {
         binding.setLifecycleOwner(this)
         viewModel.loadDropDown()
 
-        setupToolbar()
+        prepareToolbar()
         btnInfoSave.setOnClickListener { save() }
         observerSave()
         observerTypes()
-    }
-
-    private fun setupToolbar() {
-        setSupportActionBar(toolbarInfoDetail)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     private fun observerSave() {

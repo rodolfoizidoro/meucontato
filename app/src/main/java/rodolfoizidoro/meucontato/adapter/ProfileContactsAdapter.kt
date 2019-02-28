@@ -27,7 +27,7 @@ class ProfileContactsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.run {
-            val current = items[position]
+             val current = items[position]
             contact = current
             executePendingBindings()
         }
