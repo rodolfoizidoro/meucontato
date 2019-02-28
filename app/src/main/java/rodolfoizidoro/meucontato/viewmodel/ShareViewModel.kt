@@ -1,7 +1,32 @@
 package rodolfoizidoro.meucontato.viewmodel
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.launch
+import rodolfoizidoro.meucontato.api.ShareRepository
+import rodolfoizidoro.meucontato.common.CoroutineViewModel
+import rodolfoizidoro.meucontato.model.core.Profile
+import java.lang.Exception
 
-class ShareViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class ShareViewModel(val repository : ShareRepository) : CoroutineViewModel() {
+
+    private val profiles: MutableLiveData<List<Profile>> = MutableLiveData()
+    private val error: MutableLiveData<Exception> = MutableLiveData()
+
+    fun profiles() = profiles as LiveData<List<Profile>>
+    fun error() = error as LiveData<Exception>
+
+    fun loadProfiles() {
+        jobs add launch {
+            try {
+                profiles.value = repository.loadInfo().await()
+            } catch (e: Exception) {
+                error.value = e
+            }
+        }
+    }
+
+    fun saveContact(contents: String) {
+
+    }
 }

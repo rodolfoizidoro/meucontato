@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">Meu Contato</string>
     <string name="google_maps_key">AIzaSyC0ffbXn1PR63WgPBN16gWJ4B8Q7CUBTU0</string>
+
+    <!--Common-->
     <string name="save">Salvar</string>
     <string name="delete">Excluir</string>
     <string name="description">Descrição</string>
+    <string name="close">Fechar</string>
 
     <!--Login-->
     <string name="login_activity_title">Sign in</string>

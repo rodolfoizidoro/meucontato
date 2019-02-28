@@ -72,7 +72,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
 
-
     // Koin AndroidX Scope feature
     implementation "org.koin:koin-androidx-scope:$koinVersion"
 
@@ -109,6 +108,10 @@ dependencies {
 
     //ReactiveX
     implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
+
+    //QrCode
+    implementation 'com.google.zxing:core:3.2.1'
+    implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
 
     // Core library
     androidTestImplementation 'androidx.test:core:1.1.0'

@@ -73,6 +73,11 @@ object AppModule {
         viewModel { LoginViewModel(get()) }
     }
 
+    val ShareModule = module {
+        single { ShareRepository(get(), get()) }
+        viewModel { ShareViewModel(get()) }
+    }
+
     val ProfileModule = module {
         single { ProfilesRepository(get(), get()) }
         single { ProfileDetailRepository(get(), get()) }
