@@ -11,19 +11,21 @@ import java.lang.Exception
 class ShareViewModel(private val repository: ShareRepository) : CoroutineViewModel() {
 
     private val profiles: MutableLiveData<List<Profile>> = MutableLiveData()
-    private var shareId: MutableLiveData<String> = MutableLiveData()
     private val error: MutableLiveData<String> = MutableLiveData()
     private val saveSuccess: MutableLiveData<Void> = MutableLiveData()
+    private var shareId = ""
 
     fun profiles() = profiles as LiveData<List<Profile>>
-    fun shareId() = shareId as LiveData<String>
+    fun shareId() = shareId
     fun error() = error as LiveData<String>
     fun saveSuccess() = saveSuccess as LiveData<Void>
 
     fun loadProfiles() {
         jobs add launch {
             try {
-                profiles.value = repository.loadInfo().await()
+                val profileList = repository.loadInfo().await()
+                profiles.value = profileList
+                shareId = "${repository.getUserId()};${profileList[0].id}"
             } catch (e: Exception) {
                 error.value = e.localizedMessage
             }
@@ -34,7 +36,7 @@ class ShareViewModel(private val repository: ShareRepository) : CoroutineViewMod
     fun shareProfile(position: Int) {
         jobs add launch {
             try {
-                shareId.value = "${repository.getUserId()};${profiles.value!![position].id}"
+                shareId = "${repository.getUserId()};${profiles.value!![position].id}"
             } catch (e: Exception) {
                 error.value = e.localizedMessage
             }
@@ -43,12 +45,12 @@ class ShareViewModel(private val repository: ShareRepository) : CoroutineViewMod
 
 
     fun saveContact(content: String) {
-        val split = content.split(";")
-        val user = split[0]
-        val profile = split[1]
-
         jobs add launch {
             try {
+                val split = content.split(";")
+                val user = split[0]
+                val profile = split[1]
+
                 val contact = repository.findContact(user, profile).await()
                 saveSuccess.value = repository.saveContact(contact).await()
 

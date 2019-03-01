@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.share_fragment.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -32,11 +33,16 @@ class ShareFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.loadProfiles()
-        observerShare()
         observerSaveSuccess()
+        observerError()
         ivShareReceiveQr.setOnClickListener { openScanner() }
-        ivShareSendQr.setOnClickListener { viewModel.shareProfile(0) }
+        ivShareSendQr.setOnClickListener { openShareQrCode(viewModel.shareId()) }
+        btnShareTestContact.setOnClickListener {
+            btnShareTestContact.isEnabled = false
+            viewModel.saveContact(viewModel.shareId())
+        }
+
+        viewModel.loadProfiles()
     }
 
 
@@ -46,15 +52,15 @@ class ShareFragment : Fragment() {
         toast(result.contents)
     }
 
-    private fun observerShare() {
-        viewModel.shareId().observe(this, Observer {
-            openShareQrCode(it)
+    private fun observerSaveSuccess() {
+        viewModel.saveSuccess().observe(this, Observer {
+            rootShare.snackbar("Contato adicionado na aba de contatos.")
         })
     }
 
-    private fun observerSaveSuccess() {
-        viewModel.saveSuccess().observe(this, Observer {
-            toast("Sucesso")
+    private fun observerError() {
+        viewModel.error().observe(this, Observer {
+            toast(it)
         })
     }
 

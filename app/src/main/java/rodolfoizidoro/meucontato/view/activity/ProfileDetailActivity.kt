@@ -1,5 +1,6 @@
 package rodolfoizidoro.meucontato.view.activity
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -47,13 +48,14 @@ class ProfileDetailActivity : BaseActivity() {
         })
 
         viewModel.loadError().observe(this, Observer {
-            toast(it.message + "")
+            toast(it.localizedMessage + "")
         })
     }
 
     private fun observerSave() {
         viewModel.saveSuccess().observe(this, Observer {
-            toast("Salvo com sucesso")
+            setResult(Activity.RESULT_OK)
+            toast(getString(R.string.profile_detail_saved))
         })
 
         viewModel.saveError().observe(this, Observer {

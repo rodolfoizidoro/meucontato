@@ -31,11 +31,16 @@
 
     <!--Share-->
     <string name="share_title">Compartilhar Contato</string>
+    <string name="share_send_contact">Compartilhar</string>
+    <string name="share_read_contact">Ler contato</string>
 
     <!--Info Detail-->
     <string name="info_detail_tag">Tag</string>
     <string name="info_detail_contact">Contato</string>
+
+    <!--Profile Detail-->
     <string name="profile_detail_name">Nome do Perfil</string>
     <string name="profile_detail_display_name">Nome de exibição</string>
+    <string name="profile_detail_saved">Perfil salvo com sucesso</string>
 
 </resources>
