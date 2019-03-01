@@ -13,7 +13,7 @@ import rodolfoizidoro.meucontato.validators.RequiredValidator
 
 class InfoDetailViewModel(private val repository: InfoDetailRepository, var contact: Contact) : CoroutineViewModel() {
 
-    private val saveSuccess = MutableLiveData<Unit>()
+    private val saveSuccess = MutableLiveData<Void>()
     private val saveError = MutableLiveData<Exception>()
     private val dropDown = MutableLiveData<List<String>>()
 
@@ -26,7 +26,7 @@ class InfoDetailViewModel(private val repository: InfoDetailRepository, var cont
 
     val spinner = listOf("Email", "Telefone", "Instagram")
 
-    fun saveSucess() = saveSuccess as LiveData<Unit>
+    fun saveSucess() = saveSuccess as LiveData<Void>
     fun saveError() = saveError as LiveData<Exception>
     fun dropDown() = dropDown as LiveData<List<String>>
 
