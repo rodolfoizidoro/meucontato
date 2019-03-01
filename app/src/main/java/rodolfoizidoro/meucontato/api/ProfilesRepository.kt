@@ -22,7 +22,7 @@ class ProfilesRepository(private val database: FirebaseFirestore, private val au
                 database
                     .collection(USER)
                     .document(auth.uid.toString())
-                    .collection(SHARE)
+                    .collection(PROFILES)
                     .await(Profile::class.java)
             }
         }

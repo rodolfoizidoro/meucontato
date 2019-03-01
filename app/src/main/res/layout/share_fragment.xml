@@ -56,9 +56,7 @@
                     android:text="Ler contato"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@+id/ivShareReceiveQr"
-                    app:layout_constraintEnd_toEndOf="@+id/ivShareReceiveQr" android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/ivShareReceiveQr"/>
+                    android:layout_marginTop="8dp"/>
 
             <ImageView
                     android:id="@+id/ivShareReceiveQr"
@@ -66,8 +64,7 @@
                     android:layout_width="60dp"
                     android:layout_marginBottom="8dp"
                     android:layout_height="60dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:layout_marginTop="8dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
