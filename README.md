@@ -16,13 +16,12 @@ Caso queira saber mais da proposta de valor escrevi um artigo a um tempo atrás:
 https://www.linkedin.com/pulse/melhor-forma-compartilhar-o-seu-contato-rodolfo-izidoro-de-morais/
 
 # Screenshots and GIFS
-![](screenshots/Mar-01-2019%2004-23-23.gif)
-![](screenshots/Mar-01-2019%2004-27-36.gif)
-![](screenshots/Mar-01-2019%2004-27-43.gif)
-![](screenshots/Mar-01-2019%2004-27-55.gif)
-![](screenshots/Mar-01-2019%2004-28-08.gif)
-![](screenshots/Mar-01-2019%2004-28-30.gif)
-![](screenshots/Mar-01-2019%2004-29-10.gif)
+![](screenshots/contatos.gif)
+![](screenshots/meetups1.gif)
+![](screenshots/meetups2.gif)
+![](screenshots/share.gif)
+![](screenshots/info.gif)
+![](screenshots/perfis.gif)
 
 
 # Lista de Tarefas
