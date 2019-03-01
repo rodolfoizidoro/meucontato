@@ -32,6 +32,10 @@ https://www.linkedin.com/pulse/melhor-forma-compartilhar-o-seu-contato-rodolfo-i
  - [ ] Habilitar exclusão.
  - [ ] Habilitar Logout
  - [ ] Criar filtro de contatos
+ - [ ] Melhorar tela de compartilhar
+ - [ ] Melhorar tratamento de erros.
+ - [ ] Remover boilerplates
+ - [ ] Estruturar melhor o Firestore.
 
 # Bibliotecas e Frameworks
 #### Injeção de Dependencia
