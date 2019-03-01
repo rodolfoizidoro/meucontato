@@ -15,6 +15,11 @@ fazer uma versão 2.0 com todas as tecnologias atuais.
 Caso queira saber mais da proposta de valor escrevi um artigo a um tempo atrás: 
 https://www.linkedin.com/pulse/melhor-forma-compartilhar-o-seu-contato-rodolfo-izidoro-de-morais/
 
+#### Observações
+Essa foi a minha primeira experiencia utilizando databinding, livedata, viewmodel, coroutines, firestore, koin.
+Antes do projeto tinha experiencia apenas com MVP, Rx, Dagger1.
+Foi bem interessante ver as diferencas de cada estrutura e comparar os pontos positivos e negativos.
+
 # Screenshots and GIFS
 ![](screenshots/contatos.gif)
 ![](screenshots/meetups1.gif)
