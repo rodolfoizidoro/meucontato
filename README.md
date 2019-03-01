@@ -41,6 +41,8 @@ Foi bem interessante ver as diferencas de cada estrutura e comparar os pontos po
  - [ ] Melhorar tratamento de erros.
  - [ ] Remover boilerplates
  - [ ] Estruturar melhor o Firestore.
+ - [ ] Adicionar validação de formulário
+ - [ ] Adicionar mascaras nos campos.
 
 # Bibliotecas e Frameworks
 #### Injeção de Dependencia
