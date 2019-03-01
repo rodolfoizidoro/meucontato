@@ -15,6 +15,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.meetup_fragment.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import rodolfoizidoro.meucontato.R
@@ -22,6 +23,7 @@ import rodolfoizidoro.meucontato.adapter.MeetupsAdapter
 import rodolfoizidoro.meucontato.common.SharedPrefController
 import rodolfoizidoro.meucontato.databinding.MeetupFragmentBinding
 import rodolfoizidoro.meucontato.model.City
+import rodolfoizidoro.meucontato.util.setVisibility
 import rodolfoizidoro.meucontato.view.activity.FilterCityActivity
 import rodolfoizidoro.meucontato.view.activity.MeetupDetailActivity
 import rodolfoizidoro.meucontato.viewmodel.MeetupsViewModel
@@ -57,6 +59,8 @@ class MeetupsFragment : Fragment() {
         setupRecyclerView()
         setupSearchView()
         observerCities()
+        observerError()
+        observerProgress()
 
         viewModel.find("", city)
     }
@@ -67,6 +71,7 @@ class MeetupsFragment : Fragment() {
             data?.let {
                 city = data.getSerializableExtra(FilterCityActivity.EXTRA_CITY) as City
                 tvMeetupCity.text = city.name
+                viewModel.find(svMeetups.query.toString(), city)
             }
         }
     }
@@ -84,7 +89,6 @@ class MeetupsFragment : Fragment() {
             }
         })
         disposable = searchSubject.debounce(500, TimeUnit.MILLISECONDS)
-            .filter { it.length > 3 }
             .subscribe { viewModel.find(it, city) }
     }
 
@@ -102,6 +106,18 @@ class MeetupsFragment : Fragment() {
             rvMeetups.adapter = MeetupsAdapter(list) { meetupEvent ->
                 context?.startActivity<MeetupDetailActivity>(MeetupDetailActivity.EXTRA_MEETUP to meetupEvent)
             }
+        })
+    }
+
+    private fun observerProgress() {
+        viewModel.progress().observe(this, Observer {
+            pbMeetups.setVisibility(it)
+        })
+    }
+
+    private fun observerError() {
+        viewModel.error().observe(this, Observer {
+            toast(it)
         })
     }
 }

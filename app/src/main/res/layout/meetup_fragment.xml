@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
-    <RelativeLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipChildren="false"
             android:clipToPadding="false"
+            android:animateLayoutChanges="true"
             android:background="@color/white"
             android:orientation="vertical">
-
         <androidx.cardview.widget.CardView
                 android:id="@+id/tbMeetups"
                 android:layout_width="match_parent"
@@ -56,11 +56,17 @@
                 </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+        <ProgressBar
+                android:id="@+id/pbMeetups"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:indeterminate="true"
+                android:layout_marginTop="-6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvMeetups"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/tbMeetups"/>
-    </RelativeLayout>
+                android:layout_height="match_parent"/>
+    </LinearLayout>
 </layout>
