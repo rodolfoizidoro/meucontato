@@ -65,6 +65,7 @@ object AppModule {
     val ContactsModule = module {
         single { ContactsRepository(get(), get()) }
         viewModel { ContactsViewModel(get()) }
+        viewModel { (info: Profile) -> ContactInfoViewModel(info) }
     }
 
     val ProfileModule = module {

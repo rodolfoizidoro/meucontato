@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel" type="rodolfoizidoro.meucontato.viewmodel.ContactInfoViewModel"/>
+    </data>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.activity.ContactInfoActivity">
+        <include
+                android:id="@+id/toolbar"
+                layout="@layout/primary_toolbar"/>
+
+        <ImageView
+                android:layout_below="@+id/toolbar"
+                android:id="@+id/ivContactInfo"
+                android:layout_marginTop="16dp"
+                android:layout_margin="16dp"
+                app:imageLetter="@{viewModel.profile.displayName}"
+                tools:background="@color/colorPrimary"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+
+        <TextView
+                android:layout_below="@+id/toolbar"
+                android:id="@+id/tvContactInfoName"
+                android:layout_alignTop="@+id/ivContactInfo"
+                android:layout_toEndOf="@+id/ivContactInfo"
+                android:text="@{viewModel.profile.displayName}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/tvContactInfoDescription"
+                android:layout_below="@+id/tvContactInfoName"
+                android:layout_toEndOf="@+id/ivContactInfo"
+                android:text="@{viewModel.profile.description}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_margin="16dp"
+                android:layout_below="@+id/ivContactInfo"
+                android:id="@+id/rvContactInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+</layout>

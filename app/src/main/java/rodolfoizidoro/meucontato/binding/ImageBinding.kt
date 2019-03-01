@@ -20,16 +20,6 @@ object ImageBinding {
     }
 
     @JvmStatic
-    @BindingAdapter("app:imageUrl")
-    fun setImageUrl(imageView: ImageView, url: String?) {
-        Picasso.get()
-            .load(url)
-            .fit()
-            .centerInside()
-            .into(imageView)
-    }
-
-    @JvmStatic
     @BindingAdapter("app:imageLetter")
     fun setImageLetter(imageView: ImageView, name: String) {
         val color = ColorGenerator.MATERIAL.getColor(name)

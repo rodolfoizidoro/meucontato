@@ -10,10 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.contacts_fragment.*
+import org.jetbrains.anko.support.v4.startActivityForResult
 import org.jetbrains.anko.support.v4.toast
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import rodolfoizidoro.meucontato.R
 import rodolfoizidoro.meucontato.adapter.ContactsAdapter
+import rodolfoizidoro.meucontato.view.activity.ContactInfoActivity
 import rodolfoizidoro.meucontato.viewmodel.ContactsViewModel
 
 class ContactsFragment : Fragment() {
@@ -43,7 +45,7 @@ class ContactsFragment : Fragment() {
     private fun observerContacts() {
         viewModel.contacts().observe(this, Observer { list ->
             rvContacts.adapter = ContactsAdapter(list) { profile ->
-                //                startActivityForResult<ProfileDetailActivity>(1, ProfileDetailActivity.EXTRA_PROFILE_ID to profile.id)
+                startActivityForResult<ContactInfoActivity>(1, ContactInfoActivity.EXTRA_CONTACT_INFO to profile)
             }
         })
 
