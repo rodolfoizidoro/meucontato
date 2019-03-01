@@ -6,13 +6,14 @@ import kotlinx.coroutines.launch
 import rodolfoizidoro.meucontato.api.ShareRepository
 import rodolfoizidoro.meucontato.common.CoroutineViewModel
 import rodolfoizidoro.meucontato.model.core.Profile
+import rodolfoizidoro.meucontato.util.LiveEvent
 import java.lang.Exception
 
 class ShareViewModel(private val repository: ShareRepository) : CoroutineViewModel() {
 
     private val profiles: MutableLiveData<List<Profile>> = MutableLiveData()
     private val error: MutableLiveData<String> = MutableLiveData()
-    private val saveSuccess: MutableLiveData<Void> = MutableLiveData()
+    private val saveSuccess = LiveEvent<Void>()
     private var shareId = ""
 
     fun profiles() = profiles as LiveData<List<Profile>>
