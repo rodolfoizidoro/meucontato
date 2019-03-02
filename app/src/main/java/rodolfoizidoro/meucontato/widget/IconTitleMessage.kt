@@ -16,17 +16,6 @@ class IconTitleMessage @JvmOverloads constructor(context: Context, attrs: Attrib
 
     init {
         LayoutInflater.from(context).inflate(R.layout.widget_icon_title_message, this, true)
-
-        val arr = context.obtainStyledAttributes(attrs, R.styleable.IconTitleMessage)
-        val iconId = arr.getResourceId(R.styleable.IconTitleMessage_itm_icon, 0)
-        val title = arr.getString(R.styleable.IconTitleMessage_itm_title)
-        val message = arr.getString(R.styleable.IconTitleMessage_itm_message)
-
-        ivITMIcon.setImageResource(iconId)
-        tvITMTitle.text = title
-        tvITMMessage.text = message
-
-        arr.recycle()
     }
 
     fun setup(@DrawableRes icon: Drawable?, title: String, message: String?) {
