@@ -1,6 +1,8 @@
 package rodolfoizidoro.meucontato.model
 
 import com.google.android.gms.maps.model.LatLng
+import rodolfoizidoro.meucontato.util.pt_BR
+import rodolfoizidoro.meucontato.util.toHhMm
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,15 +22,16 @@ data class MeetupEvent
 ) : Serializable {
 
     fun groupTitle(): String = group.name
+
     fun dateEvent(): String {
-        val sdfDate = SimpleDateFormat("dd/MM HH:mm")
+        val sdfDate = SimpleDateFormat("dd/MM HH:mm", pt_BR)
         val now = Date(time)
         return sdfDate.format(now)
     }
 
     fun dateDetail(): String {
-        val sdfDate = SimpleDateFormat("EEEE, d MMM", Locale("pt", "BR"))
-        val now = Date(time!!)
+        val sdfDate = SimpleDateFormat("EEEE, d MMM", pt_BR)
+        val now = Date(time)
         return sdfDate.format(now)
     }
 
@@ -37,15 +40,13 @@ data class MeetupEvent
     }
 
     private fun dateTime(): String {
-        val sdfDate = SimpleDateFormat("HH:mm")
-        val now = Date(time!!)
-        return sdfDate.format(now)
+        val now = Date(time)
+        return now.toHhMm()
     }
 
     private fun dateTimeDuration(): String {
-        val sdfDate = SimpleDateFormat("HH:mm")
-        val now = Date(time!! + durationTime())
-        return sdfDate.format(now)
+        val date = Date(time + durationTime())
+        return date.toHhMm()
     }
 
     fun venueName(): String = venue?.name ?: "Não informado"
@@ -64,9 +65,5 @@ data class MeetupEvent
 
     fun hasLocationMap(): Boolean {
         return venue != null && venue!!.lat != null && venue!!.lon != null
-    }
-
-    fun hasFee(): Boolean {
-        return fee != null
     }
 }

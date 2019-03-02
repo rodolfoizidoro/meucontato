@@ -63,6 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:ignore="MissingPrefix"
+                        android:text="@{event.dateEvent()}"
                         android:padding="2dp"
                         android:textSize="12sp"
                         tools:text="Aug 17, 7:00 PM"/>
