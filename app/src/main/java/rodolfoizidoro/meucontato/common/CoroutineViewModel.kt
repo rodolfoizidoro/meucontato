@@ -17,5 +17,4 @@ open class CoroutineViewModel : ViewModel(), CoroutineScope {
         super.onCleared()
         jobs.forEach { if(!it.isCancelled) it.cancel() }
     }
-
 }

@@ -8,8 +8,12 @@
     <string name="description">Descrição</string>
     <string name="close">Fechar</string>
 
+    <!--Labels Activities-->
+    <string name="activity_info_label">Informações</string>
+    <string name="activity_edit_profile_label">Edição do perfil</string>
+    <string name="activity_contact_info_label">Detalhes do Contato</string>
+
     <!--Login-->
-    <string name="login_activity_title">Sign in</string>
     <string name="login_google_button">Sign In with Google</string>
     <string name="login_error">Falha ao fazer login</string>
 
@@ -42,5 +46,4 @@
     <string name="profile_detail_name">Nome do Perfil</string>
     <string name="profile_detail_display_name">Nome de exibição</string>
     <string name="profile_detail_saved">Perfil salvo com sucesso</string>
-
 </resources>

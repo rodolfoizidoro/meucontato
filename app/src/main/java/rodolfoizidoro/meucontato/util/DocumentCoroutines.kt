@@ -19,7 +19,6 @@ suspend fun <T : Any> DocumentReference.await(clazz: Class<T>): T {
 suspend fun <T : Any> DocumentReference.await(parser: (documentSnapshot: DocumentSnapshot) -> T): T {
     return suspendCancellableCoroutine { continuation ->
         get().addOnCompleteListener {
-
             try {
                 if (it.isSuccessful && it.result != null) {
                     continuation.resume(parser.invoke(it.result!!))

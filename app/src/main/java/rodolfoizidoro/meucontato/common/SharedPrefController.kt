@@ -23,10 +23,10 @@ class SharedPrefController(val context: Context) {
     }
 
     fun getCity(): City {
-        val name = getPrefs().getString(CITY_NAME, "São Paulo")
-        val lat = getPrefs().getString(CITY_LAT, "-23.530000686645508").toDouble()
-        val lon = getPrefs().getString(CITY_LON, "-46.630001068115234").toDouble()
-        val country = getPrefs().getString(CITY_COUNTRY, "Brasil")
+        val name = getPrefs().getString(CITY_NAME, "São Paulo")!!
+        val lat = getPrefs().getString(CITY_LAT, "-23.530000686645508")!!.toDouble()
+        val lon = getPrefs().getString(CITY_LON, "-46.630001068115234")!!.toDouble()
+        val country = getPrefs().getString(CITY_COUNTRY, "Brasil")!!
         return City(name, lat, lon, country)
     }
 

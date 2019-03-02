@@ -6,7 +6,6 @@ import br.com.youse.forms.validators.ValidationMessage
 import com.google.android.material.textfield.TextInputLayout
 
 object ValidationFieldBinding {
-
     @BindingAdapter(value = ["app:fieldError"])
     @JvmStatic
     fun onFieldValidationChange(view: TextInputLayout,

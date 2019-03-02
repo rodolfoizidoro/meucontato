@@ -34,7 +34,7 @@ class LoginRepository(private val database: FirebaseFirestore, private val auth:
 
         //Create Contact
         contact[ID] = ref.collection(CONTACTS).document().id
-        contact[TAG] = "gmail"
+        contact[TAG] = "Gmail"
         contact[TYPE] = "email"
         contact[VALUE] = email
 
