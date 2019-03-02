@@ -50,7 +50,7 @@ class InfoFragment : Fragment() {
         })
 
         viewModel.error().observe(this, Observer {
-            toast(it.localizedMessage)
+            toast(it)
         })
     }
 

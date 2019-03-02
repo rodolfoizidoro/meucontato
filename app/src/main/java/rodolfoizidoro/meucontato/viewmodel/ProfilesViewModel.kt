@@ -6,21 +6,23 @@ import kotlinx.coroutines.launch
 import rodolfoizidoro.meucontato.api.ProfilesRepository
 import rodolfoizidoro.meucontato.common.CoroutineViewModel
 import rodolfoizidoro.meucontato.model.core.Profile
+import rodolfoizidoro.meucontato.util.LiveEvent
+import rodolfoizidoro.meucontato.util.errorMessage
 
 class ProfilesViewModel(private val repository: ProfilesRepository) : CoroutineViewModel() {
 
-    private val profiles: MutableLiveData<List<Profile>> = MutableLiveData()
-    private val error: MutableLiveData<Exception> = MutableLiveData()
+    private val mProfiles: MutableLiveData<List<Profile>> = MutableLiveData()
+    private val mError = LiveEvent<String>()
 
-    fun profiles() = profiles as LiveData<List<Profile>>
-    fun error() = error as LiveData<Exception>
+    fun profiles() = mProfiles as LiveData<List<Profile>>
+    fun error() = mError as LiveData<String>
 
     fun loadProfiles() {
         jobs add launch {
             try {
-                profiles.value = repository.loadInfo().await()
-            } catch (e: Exception) {
-                error.value = e
+                mProfiles.value = repository.loadInfo().await()
+            } catch (t: Throwable) {
+                mError.value = t.errorMessage()
             }
         }
     }

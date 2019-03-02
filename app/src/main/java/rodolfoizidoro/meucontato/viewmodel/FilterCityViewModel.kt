@@ -6,24 +6,23 @@ import rodolfoizidoro.meucontato.common.CoroutineViewModel
 import kotlinx.coroutines.launch
 import rodolfoizidoro.meucontato.api.MeetupRepository
 import rodolfoizidoro.meucontato.model.City
+import rodolfoizidoro.meucontato.util.LiveEvent
+import rodolfoizidoro.meucontato.util.errorMessage
 
 class FilterCityViewModel(private val repository: MeetupRepository) : CoroutineViewModel() {
 
-    private val cityResponse: MutableLiveData<List<City>> = MutableLiveData()
-    fun cityResponse() = cityResponse as LiveData<List<City>>
+    private val mCityResponse: MutableLiveData<List<City>> = MutableLiveData()
+    private val mError = LiveEvent<String>()
+
+    fun cityResponse() = mCityResponse as LiveData<List<City>>
+    fun error() = mError as LiveData<String>
 
     fun find(query: String) {
         jobs add launch {
             try {
-                cityResponse.value = (repository.findCity(query).await().cities)
+                mCityResponse.value = (repository.findCity(query).await().cities)
             } catch (t: Throwable) {
-
-                val erro = t
-                val erro2 = t
-
-            } finally {
-                val b = ""
-                val c = ""
+                mError.value = t.errorMessage()
             }
         }
     }

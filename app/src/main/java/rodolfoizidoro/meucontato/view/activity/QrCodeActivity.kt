@@ -23,12 +23,9 @@ class QrCodeActivity : AppCompatActivity() {
             val barcodeEncoder = BarcodeEncoder()
             val bitmap = barcodeEncoder.createBitmap(bitMatrix)
             ivQrCode.setImageBitmap(bitmap)
-
-
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
         btnQrCodeClose.setOnClickListener { finish() }
     }
 

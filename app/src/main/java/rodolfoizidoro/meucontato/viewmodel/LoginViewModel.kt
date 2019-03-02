@@ -2,26 +2,27 @@ package rodolfoizidoro.meucontato.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel;
 import rodolfoizidoro.meucontato.api.LoginRepository
 import rodolfoizidoro.meucontato.common.CoroutineViewModel
+import rodolfoizidoro.meucontato.util.LiveEvent
+import rodolfoizidoro.meucontato.util.errorMessage
 import java.lang.Exception
 
 class LoginViewModel(private val repository: LoginRepository) : CoroutineViewModel() {
 
-    private val success: MutableLiveData<Void> = MutableLiveData()
-    private val error: MutableLiveData<Exception> = MutableLiveData()
+    private val mSuccess = LiveEvent<Void>()
+    private val mError = LiveEvent<String>()
 
-    fun success() = success as LiveData<Void>
-    fun error() = error as LiveData<Exception>
+    fun success() = mSuccess as LiveData<Void>
+    fun error() = mError as LiveData<String>
 
     fun registerDataForNewUser(name: String, email: String) {
         repository.registerDataForNewUser(name, email)
             .addOnSuccessListener {
-                success.value = it
+                mSuccess.value = it
             }
             .addOnFailureListener {
-                error.value = it
+                mError.value = it.errorMessage()
             }
 
     }

@@ -7,43 +7,41 @@ import rodolfoizidoro.meucontato.api.ShareRepository
 import rodolfoizidoro.meucontato.common.CoroutineViewModel
 import rodolfoizidoro.meucontato.model.core.Profile
 import rodolfoizidoro.meucontato.util.LiveEvent
-import java.lang.Exception
+import rodolfoizidoro.meucontato.util.errorMessage
 
 class ShareViewModel(private val repository: ShareRepository) : CoroutineViewModel() {
 
-    private val profiles: MutableLiveData<List<Profile>> = MutableLiveData()
-    private val error: MutableLiveData<String> = MutableLiveData()
-    private val saveSuccess = LiveEvent<Void>()
-    private var shareId = ""
+    private val mProfiles: MutableLiveData<List<Profile>> = MutableLiveData()
+    private val mError = LiveEvent<String>()
+    private val mSaveSuccess = LiveEvent<Void>()
+    private var mShareId = ""
 
-    fun profiles() = profiles as LiveData<List<Profile>>
-    fun shareId() = shareId
-    fun error() = error as LiveData<String>
-    fun saveSuccess() = saveSuccess as LiveData<Void>
+    fun profiles() = mProfiles as LiveData<List<Profile>>
+    fun shareId() = mShareId
+    fun error() = mError as LiveData<String>
+    fun saveSuccess() = mSaveSuccess as LiveData<Void>
 
     fun loadProfiles() {
         jobs add launch {
             try {
                 val profileList = repository.loadInfo().await()
-                profiles.value = profileList
-                shareId = "${repository.getUserId()};${profileList[0].id}"
-            } catch (e: Exception) {
-                error.value = e.localizedMessage
+                mProfiles.value = profileList
+                mShareId = "${repository.getUserId()};${profileList[0].id}"
+            } catch (t: Throwable) {
+                mError.value = t.errorMessage()
             }
         }
     }
-
 
     fun shareProfile(position: Int) {
         jobs add launch {
             try {
-                shareId = "${repository.getUserId()};${profiles.value!![position].id}"
-            } catch (e: Exception) {
-                error.value = e.localizedMessage
+                mShareId = "${repository.getUserId()};${mProfiles.value!![position].id}"
+            } catch (t: Throwable) {
+                mError.value = t.errorMessage()
             }
         }
     }
-
 
     fun saveContact(content: String) {
         jobs add launch {
@@ -53,10 +51,10 @@ class ShareViewModel(private val repository: ShareRepository) : CoroutineViewMod
                 val profile = split[1]
 
                 val contact = repository.findContact(user, profile).await()
-                saveSuccess.value = repository.saveContact(contact).await()
+                mSaveSuccess.value = repository.saveContact(contact).await()
 
-            } catch (e: Exception) {
-                error.value = e.localizedMessage
+            } catch (t: Throwable) {
+                mError.value = t.errorMessage()
             }
         }
     }

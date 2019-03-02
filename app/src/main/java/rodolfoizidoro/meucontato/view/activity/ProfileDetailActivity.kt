@@ -48,7 +48,7 @@ class ProfileDetailActivity : BaseActivity() {
         })
 
         viewModel.loadError().observe(this, Observer {
-            toast(it.localizedMessage + "")
+            toast(it)
         })
     }
 
@@ -59,7 +59,7 @@ class ProfileDetailActivity : BaseActivity() {
         })
 
         viewModel.saveError().observe(this, Observer {
-            toast(it.localizedMessage)
+            toast(it)
         })
     }
 

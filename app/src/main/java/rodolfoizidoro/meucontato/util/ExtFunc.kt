@@ -32,4 +32,7 @@ fun View.setVisibility(visible: Boolean) {
     this.visibility = if (visible) View.VISIBLE else View.GONE
 }
 
+fun Throwable.errorMessage() : String {
+    return this.localizedMessage ?: "Erro desconhecido"
+}
 

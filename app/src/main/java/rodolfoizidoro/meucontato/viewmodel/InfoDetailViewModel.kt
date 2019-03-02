@@ -9,33 +9,28 @@ import rodolfoizidoro.meucontato.api.FirebaseConstants
 import rodolfoizidoro.meucontato.api.InfoDetailRepository
 import rodolfoizidoro.meucontato.common.CoroutineViewModel
 import rodolfoizidoro.meucontato.model.core.Contact
+import rodolfoizidoro.meucontato.util.LiveEvent
+import rodolfoizidoro.meucontato.util.errorMessage
 import rodolfoizidoro.meucontato.validators.RequiredValidator
 
 class InfoDetailViewModel(private val repository: InfoDetailRepository, var contact: Contact) : CoroutineViewModel() {
 
     private val saveSuccess = MutableLiveData<Void>()
-    private val saveError = MutableLiveData<Exception>()
+    private val saveError = LiveEvent<String>()
     private val dropDown = MutableLiveData<List<String>>()
-
-    val tag = LiveField(key = FirebaseConstants.TAG, validators = listOf(RequiredValidator("Campo tag requerido")))
-    val value = LiveField(key = FirebaseConstants.VALUE, validators = listOf(RequiredValidator("Campo contato requerido")))
-    val form = LiveDataForm.Builder<String>()
-        .addField(tag)
-        .addField(value)
-        .build()
 
     val spinner = listOf("Email", "Telefone", "Instagram")
 
     fun saveSucess() = saveSuccess as LiveData<Void>
-    fun saveError() = saveError as LiveData<Exception>
+    fun saveError() = saveError as LiveData<String>
     fun dropDown() = dropDown as LiveData<List<String>>
 
     fun saveInfo() {
         jobs add launch {
             try {
                 saveSuccess.value = repository.saveInfo(contact).await()
-            } catch (e: Exception) {
-                saveError.value = e
+            } catch (t: Throwable) {
+                saveError.value = t.errorMessage()
             }
         }
     }

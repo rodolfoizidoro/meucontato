@@ -46,7 +46,7 @@ class InfoDetailActivity : BaseActivity() {
 
         viewModel.saveError().observe(this, Observer {
             setResult(Activity.RESULT_CANCELED)
-            toast(it.localizedMessage)
+            toast(it)
         })
     }
 
